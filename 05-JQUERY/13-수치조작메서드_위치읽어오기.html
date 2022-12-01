@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #wrap {
+            width: 300px;
+            height: 200px;
+            background: #ccc;
+            position: relative;
+            top: 50px;
+            margin: 0 auto;
+        }
+        #box {
+            width: 50px;
+            height: 50px;
+            background: aqua;
+            position: absolute;
+            top: 50px;
+            left: 100px;
+        }
+    </style>
+    <script>
+        //position() : 요소의 포지션 위치값 반환
+        //offset() : 문서에서 수직/수평 위치값 (브라우저기준으로 나의 위치)
+        $(function () {
+            let top1 = $("#box").position().top;
+            $("#t1").text(top1);
+
+            let top2 = $("#box").offset().top;
+            $("#t2").text(top2);
+        });
+    </script>
+</head>
+
+<body>
+    <p id="t1"></p>
+    <p id="t2"></p>
+    <div id="wrap">
+        <p id="box">박스1</p>
+    </div>
+</body>
+
+</html>

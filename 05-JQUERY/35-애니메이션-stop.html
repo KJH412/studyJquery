@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #controller{
+            padding: 10px;
+        }
+        #box{
+            width: 300px;
+            height: 300px;
+            background: red;
+            border: 2px solid blue;
+        }
+    </style>
+    <script>
+        $(function(){
+            let box = $('#box');
+            let openBtn = $('.open');
+            let closeBtn = $('.close');
+            let stopBtn = $('.stop');
+
+            openBtn.click(function(){
+                box.stop().animate({height:300},1000);
+            });
+            closeBtn.click(function(){
+                box.stop().animate({height:0},1000);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="controller">
+            <input type="button" class="open" value="슬라이드 다운">
+            <input type="button" class="close" value="슬라이드 업">
+            <input type="button" class="stop" value="멈추기">
+        </div>
+        <div id="box"></div>
+    </div>
+</body>
+</html>

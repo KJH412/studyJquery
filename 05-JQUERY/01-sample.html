@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <script>
+        //1.제이쿼리 스크립트 작성
+   //   $(document.ready(function(){
+            // 문단 요소가 로딩된 후에 실행
+   //   }));
+        
+        //2.요즘은 간략하게 사용
+        //아이디 선택자의 글자색상을 바꾸는 예
+        $(function(){
+           // 문단 요소가 로딩된 후에 실행
+           $("#title").css("color","red");
+        });
+    </script>
+</head>
+<body>
+    <h1 id="title">제이쿼리</h1>
+    <img id="img" src="" alt="" width="" height="">
+    <div></div>
+</body>
+</html>
+//다운로드방식으로 라이브러리 연결
+//$(function(){}); 문서요소를 다 로딩한 다음에 스크립트 실행
+//아이디가 title인 요소를 선택해서 글자색을 변경

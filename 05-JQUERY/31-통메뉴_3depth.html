@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/31.menu_3depth.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            $('ul.sub').hide(); //서브메뉴 숨기기
+            $('.dept-3').hide();
+            $('#menuBar').hide();
+            $('header').mouseenter(function(){ // = mouseover/mouseout
+                $('ul.sub').stop().slideDown();  //반드시 실행시간이 존재하는 애니메이션효과는 이벤트실행전에 stop()처리!
+                $('#menuBar').stop().slideDown(); //.stop()처리를 해줘야 왔다갔다 안움직임.
+            }).mouseleave(function(){
+                $('ul.sub').stop().slideUp();
+                $('#menuBar').stop().slideUp();
+            });
+            $('ul.sub>li>a').click(function(){ //예매, 예매내역
+                $(this).parent().find('.depth-3').slideToggle(300);
+            });
+
+            //모바일 메뉴
+            let m_menu = $('#m_menu>#m_bg_menu');
+
+            $('#m_menu>.hamberger_menu').click(function(){
+                m_menu.css('display','block').stop().animate({left:'20%'},500);
+            });
+            $('#m_menu>#m_bg_menu>.m_close').click(function(){
+                m_menu.stop().animate({left:'100%'},500);
+            });
+            //모바일메뉴에서 mouseenter(mouseover)/mouseleave(mouseout) -> click
+            $('#m_menu>#m_bg_menu>.m_btm_menu>ul>li>a').click(function(){
+                $(this).parent().find('.m_sub').stop().slideToggle();
+            });
+            $('ul.m_sub>li>a').click(function(){
+                $(this).stop().parent().find('depth-3').slideToggle();
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div id="logo">
+                <h1><a href="#void"><img src="image/logo.png" alt=""></a></h1>
+            </div>
+            <div id="menu">
+                <div class="topMenu">
+                    <a href="#void">로그인</a> | <a href="#void">회원가입</a>
+                </div>
+                <div class="btmMenu">
+                    <ul class="first">
+                        <li class="menu">
+                            <a href="#void">즐길거리</a>
+                            <ul class="sub">
+                                <li><a href="#void">놀이기구</a></li>
+                                <li><a href="#void">쇼핑</a></li>
+                                <li><a href="#void">식당</a></li>
+                                <li><a href="#void">이벤트</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu">
+                            <a href="#void">티켓</a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#void">예매</a>
+                                    <ul class="depth-3">
+                                        <li><a href="#void">예매1</a></li>
+                                        <li><a href="#void">예매2</a></li>
+                                        <li><a href="#void">예매3</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#void">예매내역</a>
+                                    <ul class="depth-3">
+                                        <li><a href="#void">예매내역1</a></li>
+                                        <li><a href="#void">예매내역2</a></li>
+                                        <li><a href="#void">예매내역3</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu">
+                            <a href="#void">VIP체험</a>
+                            <ul class="sub">
+                                <li><a href="#void">VIP체험</a></li>
+                                <li><a href="#void">VIP예약정보</a></li>
+                                <li><a href="#void">VIP후기</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="m_menu">
+                <div class="hamberger_menu">
+                    <img src="image/ham.png" alt="모바일메뉴">
+                </div>
+                <div id="m_bg_menu">
+                    <div class="menu_banner">
+                        <a href="#void"><img src="image/banner.jpg" alt=""></a>
+                    </div>
+                    <div class="m_btm_menu">
+                        <ul class="first">
+                            <li class="menu">
+                                <a href="#void">즐길거리</a>
+                                <ul class="m_sub">
+                                    <li><a href="#void">놀이기구</a></li>
+                                    <li><a href="#void">쇼핑</a></li>
+                                    <li><a href="#void">식당</a></li>
+                                    <li><a href="#void">이벤트</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu">
+                                <a href="#void">티켓</a>
+                                <ul class="m_sub">
+                                    <li><a href="#void">예매</a>
+                                        <ul class="depth-3">
+                                            <li><a href="#void">예매1</a></li>
+                                            <li><a href="#void">예매2</a></li>
+                                            <li><a href="#void">예매3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#void">예매내역</a>
+                                        <ul class="depth-3">
+                                            <li><a href="#void">예매내역1</a></li>
+                                            <li><a href="#void">예매내역2</a></li>
+                                            <li><a href="#void">예매내역3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu">
+                                <a href="#void">VIP체험</a>
+                                <ul class="m_sub">
+                                    <li><a href="#void">VIP체험</a></li>
+                                    <li><a href="#void">VIP예약정보</a></li>
+                                    <li><a href="#void">VIP후기</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="m_close">
+                        <span>X</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="menuBar"></div>
+    </header>
+
+</body>
+
+</html>

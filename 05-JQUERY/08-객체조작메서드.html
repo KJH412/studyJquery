@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <script>
+        //객체 조작 : 생성, 복제, 삭제, 속성변환
+        //속성 조작(요소의 속성)/수치 조작(요소 넓이, 높이와 같은 값의 수치)
+        /*1.새요소를 만든다. <div></div> => <div><p></P></div>
+          2.요소 복제. <p>내용</p> => <p>내용</p>  
+                                     <p>내용</p>
+          3.속성 변경 또는 추가. <img src="btn_on.gif" alt="버튼"> => <img scr="btn_off.gif" alt="버튼">
+        */
+        $(function () {
+            //html():선택한 요소에 포함되는 하위요소를 불러오거나 새 요소로 바꿀때
+            //$(요소선택).html();
+            //$(요소선택).html("새로운 요소");
+            $("h2").html("<a href='#'>HTML메서드</a>");   //""안에 '#'작은따옴표 주의
+            console.log($("h1").html());
+
+            //text() : 텍스트를 불러오거나 바꿀때 사용
+            //$(요소선택).text();
+            //$(요소선택).text("새로운 텍스트");
+            $("h2").text("텍스트 메서드");
+            console.log($("h1").text());
+
+            //css() : 스타일을 불러오거나 변형
+            //$(요소선택).css();
+            //$(요소선택).css("속성명","값");
+            //$(요소선택).css({속성명:값, 속성명:값....});
+
+            //attr() / removeAttr() : 속성 생성하거나 변경, 불러올때
+            //$(요소선택).attr("속성");
+            //$(요소선택).attr("속성명","값");
+            //$(요소선택).removeAttr("속성명","값");
+            $("#txt").text($("#wrap img").attr("src")); //text()메서드로 속성 화면에 출력
+            $("#wrap img").attr("width","200");  //attr(속성,값) : width 100 -> 200
+            $("#box img").removeAttr("border");  //romoveAttr(속성) : border속성 삭제
+
+            //addClass() / removeClass() / toggleClass() / hasClass():true,false값을 리턴
+            //addClass("클래스명")
+            $("#p1").addClass("aqua"); //aqua클래스 생성
+            $("#p2").removeClass("red");  //red클래스 삭제
+            $("#p3").toggleClass("green");  //p3에 green클래스가 있으면 삭제,없으면 생성
+            $("#p4").toggleClass("green");  
+            $("#p6").text($("#p5").hasClass("yellow"));  //yellow클래스 존재 유무
+
+
+
+        });
+    </script>    
+       <style>
+        .aqua{background: aqua;}
+        .red{background: red;}
+        .green{background: green;}
+        .yellow{background: yellow;}
+    </style>
+</head>
+
+<body>
+    <h1><strong>객체 조작 및 생성</strong></h1>
+    <h2><em>html()</em></h2>
+    <p id="wrap">
+        <img src="image/math_img_1.jpg" alt="가위" width="100">
+    </p>
+    <p id="txt"></p>
+    <p id="box">
+        <img src="image/math_img_3.jpg" alt="보" width="100" border="2">
+    </p> 
+    <p id="p1">내용1</p>
+    <p id="p2" class="red">내용2</p>
+    <p id="p3">내용3</p>
+    <p id="p4" class="green">내용4</p>
+    <p id="p5" class="yellow">내용5</p>
+    <p id="p6"></p>
+
+</body>
+
+</html>

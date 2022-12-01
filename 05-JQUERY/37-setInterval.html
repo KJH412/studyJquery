@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        h2{margin: 10px 10px;}
+        img{vertical-align: bottom;}
+
+    </style>
+    <script>
+        /* setInterval(function(){.....},타이밍):설정된 시간마다 반복처리
+           => clearInterval() : setInterval()의 무한반복을 멈춤.     */
+
+       $(function(){
+        $('.turnon').click(function(){
+            turnon();
+        });
+        $('.turnoff').click(function(){
+            turnoff();
+        });
+        $('.turnchg').click(function(){
+            changeOnOff();
+        });
+
+        /*1.전구 켜기 버튼 클릭시 실행*/
+        function turnon(){
+            $('#myimg').attr("src","image/pic_bulbon.gif");
+        }      
+        /*2.전구 끄기 버튼 클릭 실행*/
+        function turnoff(){
+            $('#myimg').attr("src","image/pic_bulboff.gif");
+            clearInterval(time); //setInterval계속실행되는걸 멈춤.
+        }
+
+        /*3.전구를 깜박이는 함수*/
+        let time;
+        function changeOnOff(){
+           time = setInterval(autolight, 500);  //0.5초마다 autolight함수를 반복(근데 누를때마다 적용됨.)
+        }
+
+        /*setInterval에 넣을 함수*/
+        let isOn = 0; //전구 상태 (0:꺼짐)
+        function autolight(){
+            if(isOn == 0){ //꺼진상태
+                $('#myimg').attr("src","image/pic_bulbon.gif");
+                isOn = 1; //켜진상태로 변경하겠다.
+            }
+            else{ //켜져있는 상태면 끔.
+                $('#myimg').attr("src","image/pic_bulboff.gif"); 
+                isOn = 0; //꺼진상태로 변경
+            }
+        }
+       });
+    </script>
+</head>
+<body>
+    <h2>깜박이는 전구</h2>
+    <input type="button" value="전구켜기" class = "turnon">
+    <img src="image/pic_bulboff.gif" alt="" id="myimg">
+    <input type="button" value="전구끄기" _onclick = "turnoff()" class="turnoff">
+    <input type="button" value="전구깜박이" _onclick = "turnoff()" class="turnchg">
+</body>
+</html>

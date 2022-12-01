@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            //contains() / has() / not() / find() / closest() 선택자
+            
+            //$("요소선택:contains(텍스트)") => 많이 씀.
+            $("#menu li:contains('내용3')").css("border", "1px dotted red");
+
+            //$("요소선택:has(태그명)") =>(태그명)을 가진 것.
+            $("#menu li:has('strong')").css("border", "2px dashed blue");           
+
+            //$("요소선택:not(태그명)")  => (태그명)을 포함하지 않는 것.
+            $("#menu li").not(":first").css("background", "yellow");  
+
+            //$("요소선택1).find(요소선택2); =>(하위요소)선택한 요소 내에 지정한 요소를 다시 찾기
+            $("#menu li").find("strong").css("font-size", "22px");  
+
+            //$("요소선택1).closest(요소선택2); =>상위요소      
+            $("#menu").closest("div").css("border", "5px double green");  
+
+        });
+    </script>
+</head>
+<body>
+    <h1>그외 선택자</h1>    
+    <div id="wrap">
+        <div id="inner_wrap">
+            <ul id="menu">
+                <li>내용1</li>
+                <li><span>내용<strong>2</strong></span></li>
+                <li><a href="#">내용3</a></li>
+                <li>내용4</li>
+                <li>내용5</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

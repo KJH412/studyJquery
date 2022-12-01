@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #wrap {
+            width: 939px;
+            margin-left: 50px;
+        }
+
+        #wrap ul {
+            margin-top: 140px;
+        }
+
+        #wrap ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #wrap ul li {
+            float: left;
+            overflow: hidden;
+            height: 25px;
+            margin-right: 6px;
+        }
+
+        #wrap ul li:last-child {
+            margin-right: 0px;
+        }
+
+        #wrap ul li img {
+            margin-top: 0px;
+        }
+
+        #wrap ul li a.on img {
+            margin-top: -25px;
+        }
+
+        #content {
+            position: relative;
+            width: 487px;
+            height: 323px;
+        }
+
+        #content div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            width: 455px;
+            height: 291px;
+            margin-top: 10px;
+            background: #55aaea;
+            padding: 16px;
+        }
+
+        #content div:first-child {
+            display: block;
+        }
+    </style>
+    <script>
+        $(function () {
+            let tab = $('#wrap #tab>li');
+            let content = $('#content>div');
+            
+            tab.on('click',function(){
+                let tg = $(this);  //이벤트 발생한 요소
+                let tc = tg.find('a');  //이벤트 발생한 요소의 자식 요소의 a태그
+                let i = tg.index();  //이벤트가 발생한 요소의 인텍스
+
+                tab.find('a').removeClass('on');  //ul>li
+                tc.addClass('on');  //이벤트 발생한 요소의 자식 요소의 a태그에만 클래스on
+
+                content.css('display','none'); //#content>div
+                content.eq(i).css('display','block');  //index번호가 같은 요소만 display=block
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <!-- tab menu -->
+        <ul id="tab">
+            <li><a href="#gallery" class="on"><img src="image/tab01.png" alt=""></a></li>
+            <li><a href="#cafe"><img src="image/tab02.png" alt=""></a></li>
+            <li><a href="#lounge"><img src="image/tab03.png" alt=""></a></li>
+            <li><a href="#setvice"><img src="image/tab04.png" alt=""></a></li>
+        </ul>
+        <!-- tab content -->
+        <div id="content">
+            <div><img src="image/img01.png" alt=""></div>
+            <div><img src="image/img02.png" alt=""></div>
+            <div><img src="image/img03.png" alt=""></div>
+            <div><img src="image/img04.png" alt=""></div>
+        </div>
+    </div>
+</body>
+
+</html>

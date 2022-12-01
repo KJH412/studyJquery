@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/colorbox.css">
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <script src="js/jquery.colorbox.js"></script>
+    <title>모달_플러그인(colorbox)</title>
+    <style>
+        /* 기본사항 */
+        *{margin:0; padding: 0; box-sizing: border-box;}
+        li{list-style: none;}
+        a{text-decoration: none; color: #000;}
+        img{vertical-align: top;}
+        html,body{height: 100%;}
+
+        /* 페이지 style */
+        ul{
+            position: absolute; left: 200px; top: 100px;
+            width: 1100px;
+        }
+        ul::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        ul li{
+            float: left;
+        }
+        ul li img{
+            margin: 10px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("modal").colorbox({rel:'modal'});
+            $('.youtube').colorbox({iframe:true, innerWidth:560, innerHeight:315});
+            $('.iframe').colorbox({iframe:true, innerWidth:600, innerHeight:400});
+        });
+    </script>
+</head>
+<body>
+    <h1>colorbox를 이용한 모달 작성</h1>
+    <ul>
+        <li><a href="img/drink_01_click.gif" class="modal"><img src="img/drink_01.jpg" alt=""></a></li>
+        <li><a href="img/drink_02_click.gif" class="modal"><img src="img/drink_02.jpg" alt=""></a></li>
+        <li><a href="img/drink_03_click.gif" class="modal"><img src="img/drink_03.jpg" alt=""></a></li>
+        <li><a href="img/drink_04_click.gif" class="modal"><img src="img/drink_04.jpg" alt=""></a></li>
+        <li><a href="img/drink_05_click.gif" class="modal"><img src="img/drink_05.jpg" alt=""></a></li>
+        <li><a href="img/drink_6_click.gif" class="modal"><img src="img/drink_6.jpg" alt=""></a></li>
+        <li><a href="https://comic.naver.com/index" class="iframe"><img src="img/drink_7.jpg" alt=""></a></li>
+        <li><a href="https://www.youtube.com/" class="youtube"><img src="img/drink_8.jpg" alt=""></a></li>
+    </ul>
+</body>
+</html>

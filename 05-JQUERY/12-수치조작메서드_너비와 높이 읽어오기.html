@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        div>span{color : red; font-size:30px;}
+        #wrapper{border:5px solid blue; padding: 30px; margin: 20px; font-size: 20px;}
+    </style>
+    <script>
+        //수치조작메서드
+        //width(),height() : 요소의 넓이와 높이값은 반환 => 안쪽 여백, 선 제외
+        //innerWidth(), innerHeight() : 안쪽 여백(padding) 포함
+        //outerWidth(), outerHeight() : 안쪽 여백(padding), 선(border) 포함 /outerWidth(true) 쓰면 마진값까지 포함
+        //position() : 요소의 포지션 위치값 반환
+        //offset() : 문서에서 수직/수평 위치값 
+        //scrollLeft()/scrollTop() : 브라우저의 수평/수직 위치값
+        $(function(){
+            let box = $("#wrapper");
+            $(window).resize(function(){
+                $("#width").text(box.width());
+                $("#height").text(box.height());
+                $("#innerWidth").text(box.innerWidth());
+                $("#innerHeight").text(box.innerHeight());
+                $("#outerWidth").text(box.outerWidth());
+                $("#outerHeight").text(box.outerHeight());
+            });
+            $(window).trigger('resize');
+        });
+    </script>
+</head>
+<body>
+    <span>브라우저의 창크기에 따른 박스 크기</span>
+    <div id="wrapper">
+        <span>박스의 width = </span><span id="width">0</span><br>
+        <span>박스의 height = </span><span id="hegiht">0</span><br>
+        <span>박스의 innerWidth = </span><span id="innerWidth">0</span><br>
+        <span>박스의 innerHeight = </span><span id="innerHeight">0</span><br>
+        <span>박스의 outerWidth = </span><span id="outerWidth">0</span><br>
+        <span>박스의 outerHeight = </span><span id="outerHeight">0</span><br>
+    </div>
+</body>
+</html>

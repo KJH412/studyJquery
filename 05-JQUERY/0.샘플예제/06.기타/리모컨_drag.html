@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin:0; padding:0;}
+        li{list-style: none;}
+        a{text-decoration: none;}
+        html,body{height: 100%;}
+
+        #mydiv{
+           position: absolute;
+           z-index: 9;
+           background-color: #f1f1f1;
+           text-align: center;
+           border: 1px solid #d3d3d3;
+        }
+        #mydivheader{
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+            background-color: #2196f3;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Draggable DIV Element</h1>
+    <p>Click and hold the mouse button down while moving the DIV element</p>
+    <div id="mydiv">
+        <div id="mydivheader">Click here to move</div>
+        <p>Move</p>
+        <p>this</p>
+        <p>DIV</p>
+    </div>
+</body>
+<script>
+    dragElement(document.getElementById("mydiv"));
+
+    function dragElement(elmt){
+        let pos1=0, pos2=0, pos3=0, pos4=0;
+        if(document.getElementById(elmt.id+"header")){
+            document.getElementById(elmt.id+"header").onmousedown = dragMouseDown;
+        } 
+        function dragMouseDown(e){
+            // e = e||window.event;
+            e.preventDefault();
+
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+        function elementDrag(e){
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            elmt.style.top = (elmt.offsetTop - pos2) + 'px';
+            elmt.style.left = (elmt.offsetLeft - pos1) + 'px';
+        }
+        //마우스 뗏을때는 기존에 적용한 마우스 이벤트를 clear시켜준다.
+        function closeDragElement(e){
+            document.onmouseup = null;
+            document.onmousedown = null;
+            document.onmousemove = null;
+        }
+    }
+</script>
+</html>

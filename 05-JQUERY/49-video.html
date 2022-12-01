@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        .btnSet{
+            width: 800px;
+        }
+        .btnSet li{
+            float: left; margin: 0 20px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(function(){
+            let vid = $('#video').get(0);  //get(비디오순서):비디오를 가져온다.
+            $('.load').click(function(){
+                vid.load();
+            });
+            $('.play').click(function(){
+                vid.play();
+            });
+            $('.pause').click(function(){
+                vid.pause();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="box">
+        <video id="video">
+            <source src="image/vid1.mp4" type="video/mp4">
+        </video>
+    </div>
+    <ul class="btnSet">
+        <li class="load">load</li>
+        <li class="play">play</li>
+        <li class="pause">pause</li>
+    </ul>
+</body>
+</html>

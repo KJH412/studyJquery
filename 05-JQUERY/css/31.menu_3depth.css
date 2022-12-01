@@ -1,0 +1,165 @@
+        * {margin:0; padding:0; box-sizing: border-box;}
+        li {list-style: none;}
+        a {text-decoration: none; color: #1c1c1b;}
+        img {vertical-align: middle; width: 100%;}
+        html, body {height: 100%;color: #1c1c1b;}
+        
+        header {
+            width: 100%;
+            position: relative;
+        }
+        header:after {content:''; display: block; clear: both;}
+/*        메뉴*/
+        nav {
+            max-width: 1400px; margin:auto;
+            position: relative;
+        }
+        header nav>#logo {
+            width: 184px; height: 80px;
+            float: left; margin: 7px 50px;
+        }
+        header nav>#logo>h1 a {
+            display: block;
+        }
+        header nav>#menu {
+            width: 1000px; height: 350px; float: right;
+        }
+        header nav>#menu>.topMenu {
+            float: right;
+            margin-top: 15px; margin-right: 60px;
+            font-size: 12px;
+        }
+        header nav>#menu>.btmMenu {
+            width: 100%; float: right; margin-top: 15px;
+            position: relative; z-index: 150;
+        }
+        header nav>#menu>.btmMenu>ul {
+            width: 100%;
+        }
+        header nav>#menu>.btmMenu>ul:after {content:''; display: block; clear: both;}
+        header nav>#menu>.btmMenu>ul>li {
+            float: left; width: 33%;
+            line-height: 45px; text-align: center;
+        }
+        header nav>#menu>.btmMenu>ul>li>a {
+            display: block;
+            font-size: 18px; font-weight: bold;
+        }
+        header nav>#menu>.btmMenu>ul>li>.sub {
+            position: relative; margin-top: 15px; display: block;
+        }
+        header nav>#menu>.btmMenu>ul>li>.sub>li {
+            line-height: 50px;
+        }
+        header nav>#menu>.btmMenu>ul>li>.sub>li>a {
+            display: block; font-weight: bold;
+        }
+        header nav>#menu>.btmMenu>ul>li>.sub>li>a:hover {
+            color: #39528a;
+            font-size: 18px;
+            font-weight: bold;
+        }
+/*
+        .clearfix {content:''; display: block; clear: both;}
+        .first>li {
+            position: relative;
+        }
+        .first>li {float: left;}
+        .first>li>a {display: block; padding: 7px 0;}
+*/
+        .first .menu>a:after {
+            content:'';
+            border-bottom:4px solid #39528a;
+            width: 0;
+            display: block;
+            transition-duration: 0.5s;
+            margin-top: 10px;
+        }
+        .first .menu:hover.menu>a:after{width:100%;}
+        header>#menuBar {
+            width: 100%; height: 450px; background-color: #eee;
+            border-top: 2px solid #39528a;
+            position: absolute; top: 105px; z-index: 140;
+        }
+        #m_menu {
+            display: none;
+        }
+/*        반응형 mediaQuery*/
+        @media all and (max-width:766px){
+            header nav>#logo {
+                width: 134; margin: 5px;
+            }
+            header nav>#logo>h1 a {
+                display: block;
+            }
+            header nav>#menu {
+                display: none;
+            }
+            header>#menuBar {
+                visibility: hidden;
+            }
+            nav {
+                width: 100%;
+            }
+            #m_menu {
+                width: 15%; float: right;
+                position: relative; display: block;
+                z-index: 1000;
+            }
+            #m_menu:after {content:''; display: block; clear: both;}
+            #m_menu>.hamberger_menu {
+                float:right; width: 30px; height: 30px;
+                margin: 25px; cursor:pointer;
+                z-index: 1000;
+            }
+            #m_menu>#m_bg_menu {
+                width: 80%; height: 1000px;
+                position: fixed; left: 100%; top: 0;
+                background-color: #f9f9f9;
+                display: none;
+                z-index: 200;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu {
+                width: 100%;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul {
+                width: 100%;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul>li {
+                line-height: 55px;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul>li>a {
+                padding-left: 30px; font-size: 16px;
+                display: block;
+                border-bottom: 1px solid #d5d5d5;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul>li>a:hover {
+                color: #39528a;
+                font-weight: bold;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul>li>.m_sub {
+                display: none;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul>li>.m_sub>li {
+                line-height: 40px;
+                border-bottom: 1px solid #d5d5d5;
+                background: #eee;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul>li>.m_sub>li>a {
+                padding-left: 60px; display: block; font-size: 16px;
+            }
+            #m_menu>#m_bg_menu>.m_close {
+                position: absolute; top:6px; right: 10px; 
+                color: #f9f9f9; font-size: 30px; cursor:pointer;
+            }
+            #m_menu>#m_bg_menu>.m_btm_menu>ul>li>a>img {
+                position: absolute; right: 10px;
+                margin-top: 30px;
+                width: 25px; height: 25px;
+                transition: all 0.5s;
+            }
+            .on {
+                transform: rotate(180deg);
+                transition: all 0.5s;
+            }
+        }

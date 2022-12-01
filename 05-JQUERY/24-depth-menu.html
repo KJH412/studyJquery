@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #nav{
+
+        }
+        ul{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        ul>li{
+            width: 25%;
+            text-align: center;
+        }
+        ul>li>a{
+            display: block;
+            background: #ccc;
+            color: #000;
+            padding: 10px 0;
+        }
+        ul>li.on>a{
+            background: #33ccff;
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        $(function(){
+            let el = $('#nav>ul>li'); //이벤트를 설정할 요소 선택
+            //메뉴의 index에 맞춰서 배열 값 설정
+            let urls = [
+                'http://www.naver.com',
+                'http://www.daum.net',
+                'http://www.google.com',
+                'http://www.nate.com'
+            ]
+            el.on({
+                mouseover : function(){
+                    let tg = $(this);
+                    tg.addClass('on');
+                },
+                mouseout : function(){
+                    let tg = $(this);
+                    tg.removeClass('on');
+                },
+                click : function(e){
+                    let tg = $(this); //클릭이벤트가 발생한 자신
+                    e.preventDefault(); //a태그의 기본 기능을 막기 (링크연결x)
+                    let i = tg.index();  //클릭이벤트가 발생한 요소의 index
+                    let linkURL = urls[i];
+                    location.href = linkURL;  //linkURL에 주소로 이동시킨다.
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <li class="on"><a href="#void">menu1</a></li>
+            <li><a href="#void">menu2</a></li>
+            <li><a href="#void">menu3</a></li>
+            <li><a href="#void">menu4</a></li>
+        </ul>
+    </div>
+</body>
+</html>

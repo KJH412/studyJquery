@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        html,body{height: 100%;}
+        img{vertical-align: middle;}
+        #wrap {
+            position: fixed; top:0; left:0;
+            width:100%; height: 100%;
+            min-width: 1400px; min-height: 780px;
+            background-image: url(img/bg_morning.jpg); background-size: cover;
+            transition:all 2s;
+        }
+        /*로고*/
+        #wrap h1 {
+            width: 90px; height: 80px;
+            position: fixed; top:30px; left: 60px;
+            background-image: url(img/logo_b.png); background-size: contain;
+            background-repeat: no-repeat;
+        }
+        /*메뉴*/
+        #gnb {position: fixed; top: 50px; right: 200px;}
+        #gnb:after {content:''; display: block; clear:both;}
+        #gnb li {float: left; margin-left: 30px;}
+        #gnb li a {font-size: 14px; font-weight: bold; color: #555;}
+       
+        /*텍스트 */
+        article {position: absolute; top: 350px; left: 150px; width: 450px;}
+        article p {font-size: 50px; color: #666;}
+        article p strong {color: #111;}
+        article em {font-size: 14px; font-style: normal; color: #333;}
+        /* 모바일 영역 */
+        figure {
+            position: absolute; top: 260px; right: -300px;
+            width: 1226px; height: 809px;
+            background-image: url(img/phone_morning.png);
+            transition: all 2s;
+        }
+        figure p {
+            position: absolute; top: 100px; left: 137px;
+            width: 540px; height: 307px;
+            overflow: hidden; font-size: 60px; font-weight: bold; color: #333;
+            line-height: 4.6; padding-left: 50px;
+        }
+        figure p span {position: relative; z-index: 5;}
+        /* 하단메뉴 */
+        nav {position: fixed; bottom: 70px; left: 6%; width: 88%;}
+        nav:after {content:''; display: block; clear:both;}
+        nav li {float: left; width: 25%;}
+        nav li a {
+            display: block; width: 98%; height: 35px;
+            background: #fff; color: #111; margin:0 auto;
+            transition: all 0.5s; font-size: 12px; font-weight: bold;
+            line-height: 3; letter-spacing: 3px; padding-left: 30px;
+            opacity: 0.6; z-index:1; position: relative;
+        }
+        nav li:hover a {background: #111; color: #ddd; opacity: 0.9;}
+        nav li.on a {background: #111; color: #ddd; opacity: 0.9;}
+
+        /* 배경구름 */
+        #wrap>img:nth-child(4) {
+            position: absolute; top:0; left: -1146px;
+            animation: ani1 110s linear infinite; opacity: 0.8;
+        }
+        #wrap>img:nth-child(5){
+            position: absolute; top: 20px; left: 0;
+            animation: ani2 100s linear infinite; opacity: 0.8;
+        }
+        /*모바일 구름*/
+        figure p img.cl1 {
+            width: 600px; height: auto;
+            position: absolute; top: 30px; left:-600px;
+            animation: ani3 110s linear infinite; z-index: 4;
+        }
+        figure p img.cl2 {
+            width: 700px; height: auto;
+            position: absolute; top: 20px; left: 0;
+            animation:ani4 100s linear infinite; z-index: 4;
+        }
+        /* 구름모션 */
+        @keyframes ani1 {
+            0%{left: -1146xp;}
+            100%{left:1950px;}
+        }
+        @keyframes ani2 {
+            0%{left: 0;}
+            50%{left: 1950px; opacity: 0;}
+            50.001%{left: -1940px; opacity: 0.8;}
+            100%{left: 0;}
+        }
+        @keyframes ani3 {
+            0%{left: -600px;}
+            100%{left: 540px;}
+        }
+        @keyframes ani4 {
+            0%{left: 0;}
+            50%{left: 540px; opacity: 0;}
+            50.001%{left: -700px; opacity: 1;}
+            100%{left: 0;}
+        }
+        /* 아침 */
+        #wrap.morning { background-image: url(img/bg_morning.jpg);}
+        #wrap.morning h1 { background-image: url(img/logo_b.png);}
+        #wrap.morning #gnb a{color: #555;}
+        #wrap.morning figure{background-image: url(img/phone_morning.png);}
+        #wrap.morning article p{color: #111;}
+        #wrap.morning article p strong{color: #333;}
+        #wrap.morning article em{color: #333;}
+        #wrap.morning figure p strong{color: #333;}
+        #wrap.morning>img:nth-child(4){opacity: 1;}
+        #wrap.morning>img:nth-child(5){opacity: 1;}
+
+        /* 점심 */
+        #wrap.afternoon{background-image: url(img/bg_afternoon.jpg);}
+        #wrap.afternoon h1 { background-image: url(img/logo_b.png);}
+        #wrap.afternoon #gnb a{color: #555;}
+        #wrap.afternoon figure{background-image: url(img/phone_afternoon.png);}
+        #wrap.afternoon article p{color: #111;}
+        #wrap.afternoon article p strong{color: #333;}
+        #wrap.afternoon article em{color: #333;}
+        #wrap.afternoon figure p strong{color: #333;}
+        #wrap.afternoon>img:nth-child(4){opacity: 1;}
+        #wrap.afternoon>img:nth-child(5){opacity: 1;}
+        /* 저녁 */
+        #wrap.evening{background-image: url(img/bg_evening.jpg);}
+        #wrap.evening h1 { background-image: url(img/logo_b.png);}
+        #wrap.evening #gnb a{color: #555;}
+        #wrap.evening figure{background-image: url(img/phone_evening.png);}
+        #wrap.evening article p{color: #111;}
+        #wrap.evening article p strong{color: #333;}
+        #wrap.evening article em{color: #333;}
+        #wrap.evening figure p strong{color: #333;}
+        #wrap.evening>img:nth-child(4){opacity: 1;}
+        #wrap.evening>img:nth-child(5){opacity: 1;}
+        /* 밤 */
+        #wrap.night{background-image: url(img/bg_night.jpg);}
+        #wrap.night h1 { background-image: url(img/logo_w.png);}
+        #wrap.night #gnb a{color: #fff;}
+        #wrap.night figure{background-image: url(img/phone_night.png);}
+        #wrap.night article p{color: #fff;}
+        #wrap.night article p strong{color: #fff;}
+        #wrap.night article em{color: #fff;}
+        #wrap.night figure p strong{color: #fff;}
+        #wrap.night>img:nth-child(4){opacity: 1;}
+        #wrap.night>img:nth-child(5){opacity: 1;} 
+        
+        #wrap.night figure p{color: #fff;}
+        
+    </style>
+    <script>
+        $(function(){
+            let timer = setInterval(function(){
+                let now = new Date();
+                let hr = now.getHours();
+                let min = now.getMinutes();
+                let sec = now.getSeconds();
+
+                //한자리수 숫자 앞에 0삽입
+                if(hr<10){
+                    hr='0'+hr;
+                }
+                if(min<10){
+                    min='0'+min;
+                }
+                if(sec<10){
+                    sec='0'+sec;
+                }
+                
+                $('p span').eq(0).text(hr);
+                $('p span').eq(1).text(min);
+                $('p span').eq(2).text(sec);
+            },1000);
+
+            //시간대별로 배경화면 바꾸기
+            let now= new Date();
+            let hr = now.getHours();
+            // hr=2;
+
+            hr =21;
+            if(hr>=5 && hr<11){
+                $('#wrap').removeClass();
+                $('#wrap').addClass('morning');
+                $('nav li').removeClass();
+                $('nav li').eq(1).addClass('on');
+            }
+            else if(hr>11 && hr<16){
+                $('#wrap').removeClass();
+                $('#wrap').addClass('afternoon');
+                $('nav li').removeClass();
+                $('nav li').eq(2).addClass('on');
+            }
+            else if(hr>=16 && hr<20){
+                $('#wrap').removeClass();
+                $('#wrap').addClass('evening');
+                $('nav li').removeClass();
+                $('nav li').eq(3).addClass('on');
+            }
+            else{
+                $('#wrap').removeClass();
+                $('#wrap').addClass('night');
+                $('nav li').removeClass();
+                $('nav li').eq(4).addClass('on');
+            }
+            
+            //메뉴 버튼을 클릭했을때 화면 테마 변경
+            $('nav li').click(function(){
+                //클릭한 객체의 자식중에 a태그의 텍스트
+                let className = $(this).children('a').text();
+                $('nav li').removeClass();
+                $(this).addClass('on');
+                $('#wrap').removeClass();
+                $('#wrap').addClass(className);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <h1></h1>
+        <ul id="gnb">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Company</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Contact us</a></li>
+        </ul>
+        <article>
+            <p><strong>Lerem</strong>Ipsum</p>
+            <em>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</em>
+        </article>
+        <!-- 배경구름 -->
+        <img src="img/cloud1.png" alt="구름">
+        <img src="img/cloud2.png" alt="구름">
+
+        <!-- 모바일 -->
+        <figure>
+            <p>
+                <span id="h01">00</span> : <span id="h02">00</span> : <span id="h03">00</span>
+                 <!-- 모바일 구름 -->
+                <img class="cl1" src="img/cloud1.png" alt="">
+                <img class="cl2" src="img/cloud2.png" alt="">
+            </p>
+        </figure>
+        <nav>
+            <ul>
+                <li><a href="#">mornig</a></li>
+                <li><a href="#">afternoon</a></li>
+                <li><a href="#">evening</a></li>
+                <li><a href="#">night</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

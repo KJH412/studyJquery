@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            width: 200px;
+        }
+        li{ 
+            list-style: none;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-bottom: 1px solid blue;
+            background-color: yellow;
+        }
+        .scrollBlid{
+            width: 230px;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            background-color: green;
+        }
+        .view{
+            width: 210px;
+            height: 260px;
+            border: 2px solid red;
+            overflow: hidden;
+        }
+    </style>
+  
+</head>
+<body>
+    <div class="view">
+        <div class="scrollBlid">
+            <ul>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+                <li>menu1</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        //mousedown : 마우스의 오른쪽 버튼을 클릭. 이벤트객체를 받아서 마우스 다운한 위치
+        //mouseleave : 마우스의 오른쪽 버튼을 클릭한 것을 떼었을 때
+        //mouseup : 마우스의 오른쪽 버튼을 클릭한 채로 움직였을 때
+        const slider = document.querySelector('.scrollBlid');
+        let isMouseDown= false;
+        let starY, scrollTop;
+    
+        slider.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            startY = e.pageY;
+            scrollTop = slider.scrollTop; //스크롤 왼쪽 위치
+        });
+    
+        slide.addEventListener('mouseleave', ()=>{
+            isMouseDown=false,
+        });
+    
+        slider.addEventListener('mouseup', ()=>{
+            isMouseDown =false;
+        });
+        //마우스가 움직였을때 드래그 시켜주는 이벤트
+        slider.addEventListener('mousemove',(e)=>{
+            if(!isMouseDown) return;
+    
+            const y =e.pageY;
+            const walk = y-startY;  //마우스가움직인x-처음위치
+            slider.scrollTop = scrollTop - walk;
+    
+        })
+    </script>
+</body>
+</html>

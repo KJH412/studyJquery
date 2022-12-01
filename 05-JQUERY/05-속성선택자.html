@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            //title속성을 가진 a태그 배경색 적용
+            $("a[title]").css("background","pink");
+
+            //href의 속성값이 http://www.nate.com인 a태그의 배경 적용
+            $("a[href='http://www.nate.com']").css("background","yellow"); //""안에 ''씀.
+
+            //href의 값을 포함한 a태그 배경색
+            $("a[href^='abcd']").css("color","red");
+
+            //href값이 net으로 끝나는 a
+            $("a[href$='net']").css("color","purple");
+
+            //href 값중에 google을 포함하는 a태그 선택
+            $("a[href*='google']").css("background","orange");
+            //hidden/visible
+            //p태그중에 보이는 요소에 1px 의 빨간색 선을 생성
+            $("p:visible").css("border","1px solid red");
+            $("p:hidden").css("display","block");
+
+            //:type속성 => input태그에 적용
+            //type이 text인 요소에 border
+            $(":text").css("border","1px dashed #f00");
+            $(":checked").attr("checked","false");
+            // $(":selected").attr("selected","false");
+            
+            
+        });
+    </script>
+</head>
+<body>
+    <h1>속성선택자</h1>
+    <ul>
+        <li><a href="http://www.naver.com" title="네이버 이름">네이버</a></li>
+        <li><a href="abcd@naver.com">네이버메일</a></li>
+        <li><a href="http://www.nate.com">네이트</a></li>
+        <li><a href="http://www.daum.net">다음</a></li>
+        <li><a href="http://www.google.com">구글</a></li>
+    </ul>
+    <p>내용1</p>
+    <p style="display: none;">내용2</p>
+
+    <h1>type속성</h1>
+    <p>
+        <label for="user_name">이름</label>
+        <input type="text" name="user_name" id="user_name">
+    </p>
+    <p>
+        <input type="checkbox" name="accept" id="accept" checked>
+        <label for="accept">사용자 동의</label>
+    </p>
+    <p>
+        <select name="rel_site" id="rel_site">
+            <option value="네이버">네이버</option>
+            <option value="네이트" selected="selected">네이트</option>
+        </select>
+    </p>
+
+</body>
+</html>

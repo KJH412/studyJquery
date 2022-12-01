@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        .wrap{
+            margin: 50px;
+            width: 50%;
+        }
+        div.banner{
+            margin-right: 10px;
+            border: 1px solid #000;
+            position: relative;
+            /* overflow: hidden; */
+        }
+        div.banner>img{
+            width: 100%;
+            position: absolute;
+            left: 0; top: 0;
+            display: none;
+        }
+        div.banner>img:first-child{
+            display: block;
+        }
+    </style>
+    <script>
+        $(function(){
+            let banner = $('.banner');
+            let bannerLength = banner.find('img').length;
+            let currentIndex = 0;
+
+            $('#next').click(function(){
+                currentIndex++;
+                if(currentIndex == bannerLength){ 
+                    currentIndex = 0;
+                }
+                $('.banner>img').stop().fadeOut(1000)  /*나머지 이미지 fadeOut*/           
+                                .eq(currentIndex).stop().fadeIn(1000); /*보여지는 해당 이미지만 fadeIn*/
+                // $(".banner>img").eq(currentIndex).stop().fadeIn(100); 
+            });
+
+            $('#prev').click(function(){
+                currentIndex--;
+                if(currentIndex < 0){
+                    currentIndex = bannerLength-1;
+                }
+                $('.banner>img').stop().fadeOut(1000) 
+                                .eq(currentIndex).stop().fadeIn(1000);
+            });
+
+            let time;
+            //화면이 load로드되면 바로 실행되는 함수(이벤트없이)           
+            timer();
+
+            //여기서부터는 반복하기 위한 내용
+             function timer(){
+                time = setInterval(function(){
+                    $('#next').trigger('click');                    
+                }, 1500);
+             }
+             $('.wrap').on({
+                mouseenter : function(){
+                    clearInterval(time);
+                },
+                mouseleave : function(){
+                    timer(); //setInterval
+                }
+             });             
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <button id="prev">이전</button>
+        <button id="next">다음</button>
+        <div class="banner">
+            <img src="image/ride1.jpg" alt="">
+            <img src="image/ride2.jpg" alt="">
+            <img src="image/ride3.jpg" alt="">
+            <img src="image/ride4.jpg" alt="">
+            <img src="image/ride5.jpg" alt="">
+            <img src="image/ride6.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

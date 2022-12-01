@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        .slide_wrap { width: 480px; margin: 50px auto; }
+
+        .slide_box {position: relative;  width: 100%; height: 100%; overflow: hidden; }
+
+        .slide_box>ul { width: 40%; display: flex; position: relative; }
+
+        .slide_box>ul>li { flex: 1; }
+
+        button {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            border: none;
+            padding: 20px;
+            background: transparent;
+            color: #000;
+            font-weight: 800;
+            font-size: 24px; }
+
+        button:hover {
+            background: #222;
+            color: #fff;
+            cursor: pointer;
+            opacity: .6; }
+
+        #prev {left: 0; }
+
+        #next { right: 0;}
+    </style>
+    <script>
+        $(function () {
+            // let list = $('.slidelist');
+            // let contents = $('.slide_list>li');
+            // let nextBtn = $('#next');
+            // let prevBtn = $('#prev');
+
+            // //슬라이드 개수
+            // let slideLen = contents.length;
+
+            // //슬라이드 넓이
+            // let slideWidth = contents.innerWidth();
+            // //width():contents넓이 
+            // //innerWidth(): contents넓이 + padding
+            // //outerWidth(): contents넓이 + padding + border
+            // //outerWidth(true):contents넓이 + padding + border + margin
+
+            // let slideSpeed = 1000;
+            // let startNum = 0;
+            // //앞뒤에 마지막, 첫번째 슬라이드를 붙여서 두개가 더 많음.4-1-2-3-4-1
+            // slideList.width(slideWidth*(slideLen+2));
+
+            let list = $('.slide_list'); //ul
+            let listWidth = list.children().outerWidth();
+            let listHeight = list.children().outerHeight();
+            let length = list.children().length;  //ul>li개수
+            let time;
+
+            list.css('width', listWidth * length + 'px');
+            list.css('height', listHeight + 'px');
+
+            timer();  //setInterval작동
+
+            /*다음버튼*/
+            $('#next').click(function () {
+                list.animate({ left: -listWidth + 'px' }, 500, function () {
+                    //$(this) : animate가 발생한 선택자(ul)
+                    //append() : 선택요소(ul)의 자식(li)뒤? 맨마지막에 추가 (첫번째li찾아서 그뒤에 추가)
+                    $(this).append("<li>" + $(this).find('li:first').html() + '</li>');
+                    //li의 맨 앞에 있는 요소뒤에 추가하고 (맨앞요소는?)삭제
+                    $(this).find('li:first').remove(); //추가된 앞li를 삭제해 다음이미지가 보이도록
+                    $(this).css('left', 0); //없으면 슬라이드효과xxx 사진만 딱딱 나타남.
+                });
+            });
+
+
+            /*이전버튼*/
+            $('#prev').click(function () {
+                //prev는 애니메이션 하기 전에 먼저 맨끝에있는사진을 맨앞에 가져다놔야함.                
+                //prepend : 선택한요소의 자식요소 앞에 내용삽입
+                list.prepend("<li>" + list.find("li:last").html() + "</li>");
+                list.find('li:last').remove();
+                list.css('left', -listWidth)
+
+                list.stop().animate({ left: 0 }, 500);
+            });
+            
+
+            // let time; 맨위에 선언
+            
+            $('.slide_wrap').mouseenter(function(){  //사진에 마우스커서 올려두면 롤링 멈춤(clearInterval).
+                clearInterval(time); 
+            }).mouseleave(function(){ //마우스 떼면 timer()실행, 무한롤링(setInterval). 
+                timer();
+            });
+            //1초에 한번씩 #next 클릭이벤트를 강제로 발생시킴
+            function timer() {
+                time = setInterval(function () {
+                    $('#next').trigger('click');
+                }, 1500)
+            }
+        });    
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="slide_wrap">
+            <div class="slide_box">
+                <ul class="slide_list">
+                    <li><img src="image/flower1.jpg" alt=""></li>
+                    <li><img src="image/flower2.jpg" alt=""></li>
+                    <li><img src="image/flower3.jpg" alt=""></li>
+                    <li><img src="image/flower4.jpg" alt=""></li>
+                </ul>
+                <button id="prev">&lang;</button>
+                <button id="next">&rang;</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

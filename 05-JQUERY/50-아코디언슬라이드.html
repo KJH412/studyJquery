@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        .wrap {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            min-width: 1024px;
+            min-height: 768px;
+            background: url("img/bg.jpg")no-repeat center bottom;
+            background-size: cover;
+        }
+
+        .wrap h1 {
+            position: fixed;
+            width: 300px;
+            top: 240px;
+            left: 0;
+            text-align: center;
+            line-height: 0.8;
+        }
+
+        .wrap h1 strong {
+            font: bold 16px;
+            color: #333;
+        }
+
+        .wrap h1 img {
+            width: 200px;
+            height: auto;
+        }
+
+        .wrap h1 span {
+            font: bold 12px arial;
+            color: #444;
+            letter-spacing: 5px;
+        }
+
+        .txt {
+            position: fixed;
+            top: 400px;
+            left: 40px;
+            font-size: 30px;
+            color: #111;
+        }
+
+        .txt span {
+            color: #888;
+        }
+
+        /* section */
+        section {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+        article{
+            position: relative; width: 12%; height: 100%;
+            background: url("img/divider.png") no-repeat left center;
+            float: right; overflow: hidden;
+            /* transition: .5s; */
+        }
+      
+        article h2{
+            position: absolute; top: 300px; left: 20px;
+            padding-left: 15px; border-left: 2px solid #555;
+            font: bold 20px; color: #666; 
+            /* transition: .5s; */
+        }
+        article div{
+            position: absolute; left: 0; top: 300px;
+            width: 100%; height: 0;
+            background: #000; 
+            opacity: .5; z-index: 2;
+            /* transition: .5s; */
+        }
+        article video{
+            position: absolute; width: auto; height: 100%;
+            margin-top: 0; margin-left: -100px;
+            opacity: 0; z-index: 1;
+        }
+        article h3{
+            position: absolute; bottom: 210px; right: -310px;
+            font-size: 40px; color: #fff;
+            opacity: 1; z-index: 4;
+        }
+        article p{
+            position: absolute; bottom: 50px; right: -310px;
+            width: 300px; height: 150px;
+            font-size: 12px; color: #fff; text-align: center;
+            opacity: .8; z-index: 5;
+        }
+        footer{
+            position: fixed; width: 100%; height: 40px;
+            left: 0; bottom: 0;
+            background: #000; font-size: 12px; color: #666;
+            letter-spacing: 2px; opacity: .8; z-index: 10;
+        }
+        footer ul{
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+        }
+        footer ul li{
+            float: left; margin-right: 40px;
+        }
+        footer span{
+            position: absolute; right: 50px; bottom: 10px;
+        }
+        /* article 호버 효과 */
+        /* article:hover{width: 35%;}
+        article:hover video{opacity: .9;}
+        article:hover h3{right: 10px;}
+        article:hover p{right: 10px;} */
+
+        article:hover h2{color: #ccc; border-left: 2px solid #ccc; z-index: 3;}
+        article:hover div{top: 270px; height: 70px;}
+
+        /* ※비디오가 전부 무한재생되면 과부하가 와서 스크립트로 
+        마우스 가져다놓으면 재생, 떼면 멈추게 해야함. */
+    </style>
+    <script>
+        $(function(){
+            $('article').mouseenter(function(){
+                let vid = $(this).find('video').get(0);
+                vid.play();
+                /*$(this).stop().animate({'width':'35%'}, 1000};
+                  $(this).find('h3').stop().animate({'right':'10px'}, 400);
+                  $(this).find('p').stop().animate({'right':'10px'}, 800); */
+                // ↓↓↓ 콜백함수 : animate가 다 실행하고 난 후 실행되는 함수!
+                $(this).stop().animate({'width':'35%'}, 1000, function(){ 
+                    $(this).find('h3').stop().animate({'right':'10px'}, 400);
+                    $(this).find('p').stop().animate({'right':'10px'}, 800);
+                });
+
+                $(this).find('video').stop().animate({'opacity':'0.9'}, 1200);
+            }).mouseleave(function(){
+                let vid = $(this).find('video').get(0);
+                vid.pause();
+                $(this).stop().animate({'width':'12%'}, 700, function(){
+                    $(this).find('video').stop().animate({'opacity':'0'}, 800);
+                    $(this).find('h3').stop().animate({'right':'-310px'}, 200);
+                    $(this).find('p').stop().animate({'right':'-310px'}, 500);
+                });
+            
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <h1>
+            <strong>Paris</strong><br>
+            <img src="img/logo.png" alt="logo"><br>
+            <span>Exception Creation</span>
+        </h1>
+        <p class="txt">
+            French & Jewerly & <span> Watch maker</span>
+        </p>
+        <section class="content">
+            <article>
+                <h2>Jewelry</h2>
+                <video loap="loop" preload="auto" muted>
+                    <source src="img/vid1.mp4" type="video/mp4">
+                </video>
+                <div></div>
+                <h3>Jewelry</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas tempore numquam perspiciatis
+                    accusantium, blanditiis rerum nostrum harum consequatur quis cum veritatis temporibus natus,
+                    reprehenderit excepturi fugit accusamus aliquam commodi laudantium.</p>
+            </article>
+            <article>
+                <h2>Watches</h2>
+                <video loap="loop" preload="auto" muted>
+                    <source src="img/vid2.mp4" type="video/mp4">
+                </video>
+                <div></div>
+                <h3>Watches</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas tempore numquam perspiciatis
+                    accusantium, blanditiis rerum nostrum harum consequatur quis cum veritatis temporibus natus,
+                    reprehenderit excepturi fugit accusamus aliquam commodi laudantium.</p>
+            </article>
+
+            <article>
+                <h2>Accessories</h2>
+                <video loap="loop" preload="auto" muted>
+                    <source src="img/vid3.mp4" type="video/mp4">
+                </video>
+                <div></div>
+                <h3>Accessories</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas tempore numquam perspiciatis
+                    accusantium, blanditiis rerum nostrum harum consequatur quis cum veritatis temporibus natus,
+                    reprehenderit excepturi fugit accusamus aliquam commodi laudantium.</p>
+            </article>
+
+            <article>
+                <h2>Gifts</h2>
+                <video loap="loop" preload="auto" muted>
+                    <source src="img/vid4.mp4" type="video/mp4">
+                </video>
+                <div></div>
+                <h3>Gifts</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas tempore numquam perspiciatis
+                    accusantium, blanditiis rerum nostrum harum consequatur quis cum veritatis temporibus natus,
+                    reprehenderit excepturi fugit accusamus aliquam commodi laudantium.</p>
+            </article>
+            <footer>
+                <ul>
+                    <li><a href="#">sitemap</a></li>
+                    <li><a href="#">contact</a></li>
+                    <li><a href="#">community</a></li>
+                </ul>
+                <span>copyright 2022 Cartier All right reserved</span>
+            </footer>
+    </div>
+</body>
+
+</html>

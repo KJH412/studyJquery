@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin:0; padding:0;}
+        li{list-style: none;}
+        a{text-decoration: none;}
+        html,body{height: 100%;}
+
+        #div1{
+            width: 400px; height: 300px;
+            border: 1px solid #aaa;
+        }
+    </style>
+    <script>
+        //html5: 드래그앤드롭 표준 권고안에 포함
+        //마우스로 객체(object)를 드래그 해서 늦을때까지 여러 단계의 이벤트가 순차적으로 발생
+        //dragstart : 객체를 드래그 하려고 시작할때 발생
+        //dragover : 대상 객체의 위에 자리잡고 있을때 발생
+        //drop:드래그가 끝나서 객체를 장소에 놓을때
+        //draggable속성 : 드래그 할려는 객체
+        /*dataTransfer : drag&drop을 사용하는데 반드시 있어야하는 객체
+                         drag&drop되는 대상을 담는 역할
+        */
+        function drag(i){
+            i.dataTransfer.setData('text', i.target.id);
+        }
+        function drop(e){
+            e.preventDefault();
+            let data = e.dataTransfer.getData('text');
+            e.target.appendChild(document.getElementById(data));   
+        }
+        function allowDrop(e){
+            e.preventDefault();
+        }
+    </script>
+</head>
+<body>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <br>
+    <img id="drag1" src="img/icon_logo_shortcut.png" alt="" draggable="true" ondragstart="drag(event)">
+</body>
+</html>

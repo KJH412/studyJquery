@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #wrap{
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        $(function(){
+            //wrap() : 선택한 요소를 각각 세 요소로 감싸기
+            //unwrap() : 부모 요소를 제거 
+            let el = $('#wrapper>ul>li:eq(2)');
+            el.wrap('<div id="wrap">');
+            el.unwrap();            
+        });
+    </script>
+</head>
+<body>
+    <span>3번의 자식 요소를 id가 wrap인 div로 감싸기</span>
+    <div id="wrapper">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3
+                <ul>
+                    <li>3-1</li>
+                    <li>3-2</li>
+                    <li>3-3</li>
+                    <li>3-4</li>
+                    <li>3-5</li>
+                </ul>
+            </li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<data>
+    <fruits name="사과">
+        <price>1000원</price>
+        <date>2022.09.22</date>
+        <origin>국산</origin>
+    </fruits>
+    <fruits name="딸기">
+        <price>1000원</price>
+        <date>2022.09.22</date>
+        <origin>필리핀</origin>
+    </fruits>
+    <fruits name="귤">
+        <price>1000원</price>
+        <date>2022.09.22</date>
+        <origin>제주도</origin>
+    </fruits>
+    <fruits name="파인애플">
+        <price>1000원</price>
+        <date>2022.09.22</date>
+        <origin>호주산</origin>
+    </fruits>
+</data>

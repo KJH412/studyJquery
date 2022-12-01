@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #panel{
+            width: 1000px;
+            border: 2px solid #999;
+            margin: auto;
+            margin-top: 50px;
+        }
+        .nav{
+            width: 960px;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function(){
+            let currentIndex = 0; //#prev,#next두곳에서 써야해서 바깥에 써줌.
+            let timer = 0; //setInterval() 함수에서 사용할 변수
+
+            $('#play').click(function(){
+                clearInterval(timer); //setInterval이 2중,3중으로 돌아가는 것을 방지.
+                timer = setInterval(nextImage, 100);                
+            });
+            $('#return').click(function(){
+                clearInterval(timer);
+                timer = setInterval(prevImage, 100);                
+            });
+            
+            
+            $('#prev').click(function(){
+                prevImage();
+            });
+            $('#next').click(function(){
+               nextImage();
+            });
+
+            function nextImage(){ //(#next.click)에 썼던 스크립트 (#play에)재사용하기 편하게 함수로 묶어줌.
+                let index = currentIndex + 1;
+                if(index>36) {index=1;}  //이미지가 36번까지 있어서 다시1로 돌아가게
+                $('#panel>img').attr('src','image/img12/ABP_'+ index +'.webp'); 
+                currentIndex = index;
+            }
+            function prevImage(){ //#prev 썼던 스크립트 함수로 묶음.
+                let index = currentIndex - 1; //여기에만 사용하는 변수라 함수안쪽에 씀.
+                if(index<1) {index=36;}
+                $('#panel>img').attr('src','image/img12/ABP_'+ index +'.webp'); 
+                currentIndex = index;                
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="panel">
+        <img src="image/img12/ABP_1.webp" alt="자동차">
+    </div>
+    <div class="nav">
+        <button id="play">play</button>        
+        <button id="return">return</button>
+        <button id="stop">stop</button>
+        <button id="prev">prev</button>
+        <button id="next">next</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #wrapper ul {
+            width: 280px;
+            height: 390px;
+            border: 2px solid black;
+            margin: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #wrapper ul li {
+            width: 200px;
+            height: 250px;
+            position: absolute;
+            top: 100%;
+        }
+
+        #wrapper ul li:first-child {
+            top: 0;
+        }
+    </style>
+    <script>
+        /*이건 슬라이드가 하나만! 보여지는것만 가능. 
+        다른구조(여러개이미지나열후 옆으로 넘어가는?) x*/
+
+        $(function () {
+            let current = 0; //현재 보여지는 카드 index
+            let banner = $('#wrapper>ul>li');
+            setInterval(function () {
+                let prev = banner.eq(current); //현재 보여지는 카드 eq(0)인상태
+                //top: 0 -> 100%
+                move(prev, 0, '-100%');   //파라미터(현재카드/다음카드 여부, 현재top값 ,움직일top값);
+                
+                current = current+1; //1번카드[0] > 2번카드[1] > 3번카드[2] > 4번카드[3](x)...
+                if(current==banner.length){  //length필드:banner의 개수를 구함.(3이되면 current값 0d으로 바꿔줌)
+                    current = 0;                    
+                }
+                
+                let next = banner.eq(current);  //다음순서에 보여지는 카드. eq(0+1)  
+                //top: 100% -> 0
+                move(next, '100%', 0);
+            }, 3000);
+
+
+            function move(tg, start, end) {
+                tg.css('top', start).stop().animate({ top: end }, 500);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <ul>
+            <li class="image1"><img src="image/1.jpg" alt="1"></li>
+            <li class="image2"><img src="image/2.jpg" alt="2"></li>
+            <li class="image3"><img src="image/3.jpg" alt="3"></li>
+        </ul>
+    </div>
+</body>
+
+</html>

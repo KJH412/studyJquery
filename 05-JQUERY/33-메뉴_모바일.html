@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        #box {
+            width: 100%;
+            height: 100%;
+            background: orange;
+        }
+
+        #btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+
+        .bar1,
+        .bar2,
+        .bar3 {
+            width: 35px;
+            height: 5px;
+            background: #fff;
+            margin: 6px 0;
+            transition: .4s;
+        }
+
+        #topNav {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 90%;
+            background: #333;
+        }
+
+        /* #topNav>#btn{
+            position: fixed;
+            right: 0;
+            padding: 10px; display: block;
+        } */
+        #topNav>ul {
+            position: absolute;
+            width: 90%;
+            left: 0;
+            background: darkgray;
+        }
+
+        #topNav>ul>li {
+            width: 100%;
+        }
+
+        #topNav>ul>li>a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* 모바일메뉴를 X변경하는 class스타일 */
+        .change .bar1 {
+            transform: rotate(-45deg) translate(-9px, 7px);
+        }
+
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        .change .bar3 {
+            transform: rotate(45deg) translate(-8px, -6px);
+        }
+
+        .sub {
+            position: relative;
+            width: 100%;
+            display: none;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .menu>a {
+            color: #fff;
+        }
+
+        .menu>a>span {
+            display: inline-block;
+            margin-left: 50px;
+            transform-origin: center;
+            transition: .4s;
+        }
+
+        .menu>a>span.on {
+            transform: rotate(180deg);
+        }
+    </style>
+    <script>
+        $(function () {
+            let check = 0;
+            $('#btn').click(function () {
+                $('#btn').toggleClass('change');
+                if (check == 0) {//메뉴가 보이지 않는 상태
+                    $('#topNav').animate({ left: '10%' }, 500);
+                    check = 1; //메뉴보이는 상태로 바꿔줌
+                } else {
+                    $('#topNav').animate({ left: '90%' }, 500);
+                    check = 0;
+                }
+            });
+
+            //<메뉴를 클릭했을 때 서브메뉴가 보여지게 처리>
+            
+            let isOn = 0;   //isOn은 △때문에 만든것! .on클래스(180도회전)
+
+            $("#nav>li").click(function () {
+
+                //2.클릭한 자신은 슬라이드다운...나머지는 다 슬라이드업(이것만 있어도 됨..화살표회전안할거면)
+                $(this).find('.sub').stop().slideToggle(500)
+                    .parents().siblings().find('.sub').slideUp();
+
+                //1.이벤트가 발생한(클릭한)메뉴의 인덱스 값을 가져온다. 
+                let i = $(this).index(); //몇번째(index) 메뉴(#nav>li)를 선택했는지 알아내려고
+
+                /*3.같은 메뉴를 선택하지 않았을 경우에는 toggleClass가 실행되지 않으므로 ~
+                  다른메뉴 선택하면 on클래스 삭제. */
+                if (isOn != i) {
+                    $('#nav>li>a>span').removeClass('on');
+                }
+                $(this).find('a>span').toggleClass('on'); //클릭한this속 a>span에 on클라스(180도회전) 추가/삭제
+                isOn = i; //몇번째(i)를 클릭했는지 isOn에 집어넣는다. 지금선택한것과 다음선택한걸 비교
+                //isOn=0(초기값) 맨위에선언해놨음.
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <a href="#" id="btn">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </a>
+    <div id="topNav">
+        <ul id="nav">
+            <li class="menu">
+                <a href="#void">main1<span>△</span></a>
+                <ul class="sub">
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                </ul>
+            </li>
+            <li class="menu">
+                <a href="#void">main2<span>△</span></a>
+                <ul class="sub">
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                </ul>
+            </li>
+            <li class="menu">
+                <a href="#void">main3<span>△</span></a>
+                <ul class="sub">
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                </ul>
+            </li>
+            <li class="menu">
+                <a href="#void">main4<span>△</span></a>
+                <ul class="sub">
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                </ul>
+            </li>
+            <li class="menu">
+                <a href="#void">main5<span>△</span></a>
+                <ul class="sub">
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                    <li>submenu</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="box"></div>
+</body>
+
+</html>

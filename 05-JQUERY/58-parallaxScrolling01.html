@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        div.wrap{
+            position: relative; width: 100%; min-height: 100%;
+            text-align: center;
+        }
+        div.contents{
+            position: absolute; top: 0; left: 0;
+            min-height: 100%; text-align: left;
+            margin: 0 75px 0 200px;
+            background: #fff; overflow: hidden;
+        }
+        .contents{
+            overflow: hidden; width: 100%; min-width: 1445px;
+            margin: 0 !important;
+        }
+        .contents .parallax{
+            position: relative; width: 1280px; height: 3600px;
+            margin: auto;
+        }
+        .section01, .section02, .section03{
+            overflow: hidden; position: absolute; left: 50%;
+            width: 1645px; height: 1200px; margin-left: -822px;
+        }
+        .section01>*, .section02>*, .section03>*{
+            position: absolute;
+        }
+        .section01{
+            top: 0;
+            background: url(index/bg_main01.jpg) no-repeat left top;
+        }
+        .section02{
+            top: 1200px;
+            background: url(index/bg_main02.jpg) no-repeat left top;
+            z-index: 100;
+        }
+        .section03{
+            top: 2400px;
+            background: url(index/bg_main03.jpg) no-repeat left top;
+            z-index: 200;
+        }
+        /* section01 */     
+        .section01 .arrow{
+            position: absolute; left: 300px; top: 10px;
+            width: 49px; height: 56px;
+            z-index: 500;
+        }
+        .section01 .tit{
+            left: 297px ;top: 200px; z-index: 500;
+        }
+        .section01 .txt{
+            left: 297px; top: 390px; z-index: 400;
+        }
+        .section01 .obj01{
+            left: 117px; top: 0;
+            width: 256px; height: 161px;
+            background: url(index/mSection01_obj01.png) no-repeat left top;
+            z-index: 300;
+        }
+        .section01 .obj02{
+            left: 729px; top: 363px;
+            width: 104px; height: 67px;
+            background: url(index/mSection01_obj02.png) no-repeat left top;
+            z-index: 300;
+        }
+        .section01 .obj03{
+            left: 909px; top: 452px;
+            width: 104px; height: 67px;
+            background: url(index/mSection01_obj03.png) no-repeat left top;
+            z-index: 300;
+        }
+        .section01 .obj04{
+            left: 1121x; top: 578px;
+            width: 54px; height: 67px;
+            background: url(index/mSection01_obj04.png) no-repeat left top;
+            z-index: 300;
+        }
+        .section01 .obj05{
+            left: 1197px; top: 591px;
+            width: 41px; height: 34px;
+            background: url(index/mSection01_obj05.png) no-repeat left top;
+            z-index: 300;
+        }
+        .section01 .obj06{
+            left: 1138px; top: 389px;
+            width: 406px; height: 315px;
+            background: url(index/mSection01_obj06.png) no-repeat left top;
+            z-index: 300;
+        }
+        .section01 .obj07{
+            left: 0px; top: 885px;
+            width: 791px; height: 315px;
+            background: url(index/mSection01_obj07.png) no-repeat left top;
+            z-index: 300;
+        }
+        .section01 .obj08{
+            left: 0px; top: 0px;
+            width: 1433px; height: 954px;
+            background: url(index/mSection01_obj08.png) no-repeat left top;
+            z-index: 300;
+        }
+
+        /*section02*/
+        .section02 .arrow{
+            position: absolute; left: 270px; top: 10px;
+            width: 49px; height: 56px;
+            z-index: 1500;
+        }
+        .section02 .tit {
+            left: 291px; top: 257px; z-index: 1500;
+        }
+        .section02 .txt {
+            left: 297px; top: 464px; z-index: 1500;
+        }
+        .section02 .obj01 {
+            left: 780px; top:-60px;
+            width: 258px; height: 254px;
+            background: url(index/mSection02_obj02.png) no-repeat left top;
+            z-index: 1100;
+        }
+        .section02 .obj02 {
+            left: 690px; top:15px;
+            width: 258px; height: 254px;
+            background: url(index/mSection02_obj02.png) no-repeat left top;
+            z-index: 1200;
+        }
+        .section02 .obj03 {
+            left: 630px; top:203px;
+            width: 599px; height: 475px;
+            background: url(index/mSection02_obj03.png) no-repeat left top;
+            z-index: 1400;
+        }
+        .section02 .obj04 {
+            left: 505px; top:624px;
+            width: 536px; height: 390px;
+            background: url(index/mSection02_obj05.png) no-repeat left top;
+            z-index: 1300;
+        }
+        .section02 .obj05 {
+            left: 610px; top:777px;
+            width: 539px; height: 425px;
+            background: url(index/mSection02_obj04.png) no-repeat left top;
+            z-index: 1350;
+        }
+        /*section03*/
+        .section03 .arrow {
+            position: absolute; left: 380px; top: 10px; 
+            width: 49px; height: 56px;
+            z-index: 2500px;
+        }
+        .section03 .tit {
+            left: 634px; top: 158px; z-index: 2500;
+        }
+        .section03 .txt {
+            left: 634px; top: 328px; z-index: 2400;
+        }
+        .section03 .obj01 {
+            left: 55px; top: -275px;
+            width: 1087px; height: 1030px;
+            background: url(index/mSection03_obj01.png) no-repeat left top;
+            z-index: 2300;
+        }
+    </style>
+    <script>
+    $(function(){
+           let section = $('#contents>.parallax>div')  //section01,02,03
+           let sectionInfo = []; //배열
+           let objectInfo = [];  //배열
+           let totalSize = section.length; //3
+
+        section.each(function(i){  //each-> for문과 같은 반복문 :3번반복
+                                   //i : 반복 실행중인 section의 index
+                                   //i=0, 1, 2
+            let tg = $(this);
+            sectionInfo.push(tg.offset().top);   //push:배열에 데이터를 insert
+                                                 //sectionInfo=[0, 1200, 2400] 각 섹션의 top값
+            objectInfo.push([]);                 //objectInfo=[][] : 2차원배열로 만듦.
+
+            let child = tg.children();  //obj, tit, txt...section박스안의 자식요소
+            child.each(function(j){     //j : 0~9(섹션01은 자식요소가 10개)
+                let t = $(this);
+                objectInfo[i][j]= t.position().top; //objectInfo[0][0]...objectInfo[0][9](자식요소10개니까) 각 센션 별 자식들의 top값을 넣음.
+                                                    //objectInfo[1][0]...
+                                                    //objectInfo[2][0]...
+            });
+
+            let upBtn = tg.find('.tit>.arrow>a:eq(0)');
+            let downBtn = tg.find('.tit>.arrow>a:eq(1)');
+            upBtn.click(function(e){
+                e.preventDefault();   //a태그의 기본기능 막기.
+                if(i==0) return;  //현재위치하고있는 곳(section)이 i 
+                move(i-1);  //업 -> 이전으로. -1
+            });
+            downBtn.click(function(e){
+                e.preventDefault();   //a태그의 기본기능 막기.
+                if(i==totalSize-1) return; /*totalSize=section.length=3-1=2,  i==2가 아니면move(i+1)로 다음으로 이동.
+                섹션0(첫번쨰),1(두번째)번까지는 다음섹션으로 넘어감.i가==2가되는 2(세번째)번은 return 동작x.*/
+                move(i+1);   //다운 -> 다음으로 +1
+            });
+        });
+        function move(index){  //움직일section의 index값(top값?)받음.
+            let tt = sectionInfo[index];  //
+            $('html, body').stop().animate({scrollTop:tt}, 600);
+        }
+
+        
+        //각 section을 fixed로 만들고 top값으로 움직임을 설정
+        section.css('position','fixed');
+        //scroll이벤트 처리  //*배경은top으로붙고(fixed고정)+자식요소(배경효과등)는 아래로?이동
+        $(window).scroll(function(){
+            let sct = $(window).scrollTop();  
+            section.each(function(i){ //반복문.  seciton의 각i값 파라미터로 받아서 처리.
+                let tg = $(this);
+                /* 스크롤이 움직이면 스크롤의 이동값을 얻어 반대로 움직이게 하기위해 -1을 곱한다. 
+                배열에 저장되어있는 section의 top값에 더해준다.  */
+                let tt = -1*sct + sectionInfo[i];  //section의 top 
+
+                //top값을 반으로 줄임 0.5
+                //section이 서로 포개지는 효과
+                if(sct>sectionInfo[i]) tt*=0.5;  
+
+                tg.css('top', tt);
+
+                let child = tg.children();
+                child.each(function(j){  //j =현재 움직이고있는
+                    let t = $(this);  
+                    //각 오브젝트의 시작위치와 끝위치
+                    let start = sectionInfo[i];
+                    let end = sectionInfo[i+1];
+
+                    //마지막section은 다음section이 존재하지 않아서 end값 구할 수 없다.
+                    //document높이를 할당.
+                    if(!end) end = $(document).height();
+
+                    /*참고*/
+                    //초기이동값 = 오브젝트의 top값
+                    let min = objectInfo[i][j];
+                    //최대 이동값= 오브젝트의 top값 + (index:j*일정거리:200)+최소이동거리:100 
+                    let max = objectInfo[i][j]+j*200+100;
+                    //오브젝트들의 움직일 top값 설정
+                    //(스크롤 위치 - 섹션의 top)*()/
+                    let objT = (sct-start)*(max-min)/(end-start)+min;
+                    
+                    t.css({top:objT});
+                });
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="contents" id="contents">
+            <div class="parallax">
+                <div class="section01">
+                    <div class="obj07"></div>
+                    <div class="obj04"></div>
+                    <div class="obj02"></div>
+                    <div class="tit">
+                        <img src="index/mSection01_tit.png" alt="">
+                        <div class="arrow">
+                            <a href="#"><img src="index/arrow_up.png" alt="위"></a>
+                            <a href="#"><img src="index/arrow_down.png" alt="아래"></a>
+                        </div>
+                    </div>
+                    <p class="txt">
+                        <img src="index/mSection01_txt.png" alt="">
+                    </p>
+                    <div class="obj05"></div>
+                    <div class="obj01"></div>
+                    <div class="obj03"></div>
+                    <div class="obj06"></div>
+                    <div class="obj08"></div>
+                </div>
+                <div class="section02">
+                    <div class="tit">
+                        <img src="index/mSection02_tit.png" alt="">
+                        <div class="arrow">
+                            <a href="#"><img src="index/arrow_up.png" alt="위"></a>
+                            <a href="#"><img src="index/arrow_down.png" alt="아래"></a>
+                        </div>
+                    </div>
+                    <p class="txt"><img src="index/mSection02_txt.png" alt=""></p>
+                    <div class="obj01"></div>
+                    <div class="obj02"></div>
+                    <div class="obj03"></div>
+                    <div class="obj05"></div>
+                    <div class="obj04"></div>
+                </div>
+                <div class="section03">
+                    <div class="obj01"></div>
+                    <p class="txt lastchild">
+                        <img src="index/mSection03_txt.png" alt="">                        
+                    </p>                                        
+                    <div class="tit">
+                        <img src="index/mSection03_tit.png" alt="">
+                        <div class="arrow">
+                            <a href="#"><img src="index/arrow_up.png" alt="위"></a>
+                            <a href="#"><img src="index/arrow_down.png" alt="아래"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

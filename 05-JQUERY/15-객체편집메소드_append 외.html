@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        li{
+            margin: 5px;
+            border: 1px solid green;
+        }
+        .newEl{
+            color: red;
+        }
+    </style>
+    <script>
+        $(function(){
+            //append() : 선택한 요소 뒤에 새요소 추가
+            let el = $('#wrapper>ul>li:eq(2)>ul');
+            el.append('<li class="newEl">3-5</li>');
+
+            //prepend() : 선택한 요소 맨 앞에 새요소 추가
+            el.prepend('<li class="newEl">3-0</li>');
+
+            //before() : 선택한 요소의 이전 위치에 새 요소를 추가
+            let elb = $('#wrapper>ul>li:eq(2)>ul>li:eq(3)'); //이미 3-0이 추가되서 인덱스값이 증가 eq(3)
+            elb.before('<li class="newEl">3-3(before)</li>');
+
+            //after() : 선택한 요소의 이후 위치에 새 요소를 추가
+            let ela = $('#wrapper>ul>li:eq(2)>ul>li:eq(2)');
+            ela.after('<li class="newEl">3-2(after)</li>');
+        });
+    </script>
+</head>
+<body>
+    <span>append()메서드 사용</span>
+    <div id="wrapper">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3
+                <ul>
+                    <li>3-1(위에 3-0을 추가)</li>
+                    <li>3-2</li>
+                    <li>3-3(위에 3-3을 추가)</li>
+                    <li>3-4(아래에 3-5를 추가)</li>
+                </ul>
+            </li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>스크롤바위치읽어오기</title>
+    <style>
+        body{
+            /* 스크롤 만들기위해 강제로 높이 설정 */
+            height: 4000px;
+        }
+    </style>
+    <script>
+        //scrollLeft()/scrollTop() : 브라우저의 수평/수직 위치값
+        $(function () {
+            let s = $(window).scrollTop(2000);  //윈도우 스크롤 위치 변경
+            alert($(window).scrollTop());  //현재 스크롤의 위치를 출력
+        });
+    </script>
+</head>
+
+<body>
+ 
+</body>
+
+</html>

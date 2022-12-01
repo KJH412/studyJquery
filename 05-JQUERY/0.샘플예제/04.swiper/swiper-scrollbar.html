@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .swiper-container {
+            width: 50%;
+            height: 50vh;
+            top: 100px;
+        }
+
+        .swiper-slide {
+            height: 40vh;
+            border: 1px solid #eee;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="img/10266.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="img/10269.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="img/10271.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="img/10272-quicklinks.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="img/10272.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="img/10914.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="img/21054-nav.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/21317.jpg" alt=""></div>
+        </div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+    <!-- Swiper JS -->
+    <script src="js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView:3, //한 슬라이드에 보여질 갯수
+            spaceBetween:10, //슬라이드 사이 여백
+            // loop: true //슬라이드 반복여부
+            freeMode: true,  //슬라이드 넘길때 위치 고정 여부
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                draggable:true,
+                snapOnRelease:true,
+            },
+        });
+    </script>
+</body>
+</html>

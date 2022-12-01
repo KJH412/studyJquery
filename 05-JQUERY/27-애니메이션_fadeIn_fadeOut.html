@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #wrapper{
+            margin-top: 20px;
+        }
+        #box{
+            width: 300px;
+            height: 300px;
+            background: red;
+            border: 2px solid blue;
+        }
+        input{
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+    <script>
+        //자바스크립트는 opacity를 줘서 코딩해야함.
+         $(function(){
+            $('#control>input:eq(0)').click(function(){
+                $('#wrapper>#box').fadeIn(1000);
+            });
+            $('#control>input:eq(1)').click(function(){
+                $('#wrapper>#box').fadeOut(1000);
+            });
+         });
+    </script>
+</head>
+<body>
+    <div id="control">
+        <input type="button" value="fadeIn">
+        <input type="button" value="fadeOut">
+    </div>
+    <div id="wrapper">
+        <div id="box"></div>
+    </div>
+</body>
+</html>

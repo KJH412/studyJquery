@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #wrapper{
+            margin-top: 20px;
+        }
+        #box{
+            width: 300px;
+            height: 300px;
+            background: red;
+            border: 2px solid blue;
+        }
+        input{
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+    <script>
+        $(function(){
+            let control = $('#control');
+            let showBtn = control.find('input:eq(0)');
+            let hideBtn = control.find('input:eq(1)');
+            let toggleBtn = control.find('input:eq(2)');
+            let box = $('#wrapper #box');
+
+            showBtn.click(function(){
+                box.show(600);
+            });
+            hideBtn.click(function(){
+                box.hide(1000);
+            });
+            toggleBtn.click(function(){
+                box.toggle(400); //show(),hide()번갈아가면서 실행
+            })
+        });
+    </script>
+</head>
+<body>
+    <div id="control">
+        <input type="button" value="show">
+        <input type="button" value="hide">
+        <input type="button" value="toggle">
+    </div>    
+    <div id="wrapper">
+        <div id="box"></div>
+    </div>
+</body>
+</html>

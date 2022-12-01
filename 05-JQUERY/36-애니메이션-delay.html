@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+     <title>Document</title>
+     <style>
+        #red{
+            width: 100px; height: 100px;
+            background: red;
+            border: 2px solid blue;
+            position: absolute; left: 10px;
+        }
+        #green{
+            width: 100px;height: 100px;
+            background: green;
+            border: 2px solid blue;
+            position: absolute; left: 10px; top: 160px;
+        }
+        #blue{
+            width: 100px;height: 100px;
+            background: blue;
+            border: 2px solid blue;
+            position: absolute; left: 10px; top: 280px;
+        }
+        #yellow{
+            width: 100px; height: 100px;
+            background: yellow;
+            border: 2px solid blue;
+            position: absolute; left: 10px; top: 400px;
+        }
+     </style>
+     <script>
+        $(function(){
+            $('#wrapper>#controller>input').click(function(){
+                $('#red').css('left',10).delay(100).animate({left:'90%'}); //anmaite가 딜레이됨.
+                $('#green').css('left',10).delay(200).animate({left:'90%'});
+                $('#blue').css('left',10).delay(300).animate({left:'90%'});
+                $('#yellow').css('left',10).delay(400).animate({left:'90%'});                
+            });
+        });
+     </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="controller">
+            <input type="button" class="left" value="move">
+        </div>
+        <div id="red"></div>
+        <div id="green"></div>
+        <div id="blue"></div>
+        <div id="yellow"></div>
+    </div>
+</body>
+</html>

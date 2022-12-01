@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            //이스케이프 문자를 일반 문자로 변환
+            //receive.html?value=0&변수=값&변수=값
+            //?, &, ... 특수문자 코드 %26%38
+            // 빈칸 : %20, 세미콜론(;): %3b
+            let url = unescape(location.href);
+            //receive.html?value=0
+            let pm = url.split('?');
+            //pm[0] : receive.html
+            //pm[1] : value=0
+
+            let params = pm[1].split('&');
+            //params : 파라미터
+            //params[0] : value=0 
+
+            for(let i=0; i<params.length; i++){
+                var param = params[i].split('='); //let으로하면 for문 안에서만 쓸 수 있음..
+                //param[0] :value
+                //param[1] : 0
+
+                alert(param[0]+'의 값은' + param[1]+'입니다.');
+            }
+            let idx = param[1]; //for문 바깥에 param변수
+            $('ul li').eq(idx).css('display', 'block');
+        });
+    </script>
+</head>
+<body>
+    <ul>
+        <li>빵에 대한 내용이 담긴 박스</li>
+        <li>케익에 대한 내용이 담긴 박스</li>
+    </ul>
+</body>
+</html>

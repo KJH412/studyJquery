@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <title>Document</title>
+    <style>
+        #amount{
+            border: 0; color: #f6931f; font-weight: bold; margin-bottom: 70px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('#slider-range').slider({
+                // orientation: 'vertical', 슬라이더 세로
+                range : true,
+                min : 50, //슬라이더구간을 정하기 위해 최소최대값 씀.
+                max : 200,
+                values : [75, 150],
+                slide: function(e, u){ //e:이벤트객치(요소, 어떤이벤트,,,)
+                                       //u:슬라이드가 움직이는 값
+                    $('#amount').val('$'+ u.values[0] + '- $'+ u.values[1]);
+                }
+            });
+            $('#amount').val('$'+ $('#slider-range').slider('values',0)+
+                             ' -$'+ $('#slider-range').slider('values',1));                              
+        });
+    </script>
+</head>
+<body>
+    <div><span>vlaue=</span><span id="value">0</span></div>
+    <div id="slider"></div>    
+    <p>
+        <label for="amount">Price range :</label>
+        <input type="text" id="amount">
+    </p>
+    <div id="slider-range"></div>
+</body>
+</html>

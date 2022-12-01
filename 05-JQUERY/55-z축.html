@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        body{
+            /* 스크롤만들기 위해서 높이값 설정 */
+            width: 100%; height: 23000px; font-size: 12px;
+        }
+        img{ vertical-align: middle; }
+        .bg{
+            position: fixed; width: 100%; height: 100%;
+            top: 0; left: 0;
+            background: url(img1/bg.jpg) no-repeat center top;
+            background-size: cover;
+        }
+        /* 로고 */
+        h1{
+            position: fixed; top: 40px; left: 70px;
+            z-index: 2; 
+        }
+        h1 img{width: 130px;}
+        /* 주메뉴 */
+        .gnb{
+            position: fixed; top: 50px; right: 250px;
+            z-index: 2;
+        }
+        .gnb li{
+            float: left; margin-left: 50px;
+        }
+        .gnb li a{
+            display: block;
+            font-size: 14px; font-weight: bold; color: #fff;
+            transform: scale(1); opacity: .5;
+            transition: all .5s;
+        }
+        .gnb li a:hover{
+            transform: scale(1.5); opacity: 1;
+        }
+        /* 스크롤 메뉴 */
+        .scrollNav{position: fixed; left: 100px; top: 300px; z-index: 2;}
+        .scrollNav li {
+            position: relative; width: 150px; height: 35px;
+            margin-bottom: 20px; font-size: 12px; color: #fff; cursor: pointer;
+        }
+        .scrollNav li em{
+            position: absolute; top: 8px; left: 20px;
+            font-size: 14px; font-weight: bold; color: #fff;
+            text-shadow: 1px 1px 1px #000;
+        }
+        .scrollNav li span{
+            display: block; width: 3%; height: 100%;  /*처음엔 가로3% -> on되면 가로100%*/
+            position: absolute; transform: skewX(-30deg);
+            box-shadow: 1px 1px 1px #000;
+        }
+        .scrollNav li.on span {width: 100%;}
+        .scrollNav li:nth-child(1) span {background: #ff0f51;}
+        .scrollNav li:nth-child(2) span {background: #fffb02;}
+        .scrollNav li:nth-child(3) span {background: #b57de4;}
+        .scrollNav li:nth-child(4) span {background: #7cf923;}
+        .scrollNav li:nth-child(5) span {background: #3dbdfa;}
+
+        /* 박스 레이아웃 */
+        section{
+            width: 1200px; height: 700px;
+            position: fixed; left: 50%; top: 50%; margin-left: -600px; margin-top: -350px;
+            perspective: 2300px; z-index: 1; 
+            /* 원금감 설정 */
+        }
+        section>article{
+            width: 1200px; height: 700px; 
+            position: absolute; top: 0; left: 0;
+            opacity: .3; z-index: 1; 
+        }
+        section>article.on { opacity: 1; z-index: 2;}
+        section>article:nth-child(1){transform: translateZ(0px); }
+        section>article:nth-child(2){transform: translateZ(-5000px); }
+        section>article:nth-child(3){transform: translateZ(-10000px); }
+        section>article:nth-child(4){transform: translateZ(-15000px); }
+        section>article:nth-child(5){transform: translateZ(-20000px); }
+
+        section>article>p{
+            position: absolute; width: 450ox; padding: 30px 60px;
+            color: #fff; opacity: 1;
+        }
+        section>article>p>span{
+            font-size: 60px; letter-spacing: 0px; line-height: 1.5;
+        }
+        section>article>img{
+            position: absolute;
+        }
+        /* 1 */
+        section>article:nth-child(1) p {bottom: 100px; right: -100px;}
+        section>article:nth-child(1) p span {color: #ff0f51;}
+        .obj11 {bottom: -100px; left: -270px;}
+        .obj12 {top: -85px; right: -593px;}
+        .obj13 {bottom: 20px; left: -100px;}
+        /*2*/
+        section>article:nth-child(2) p {bottom: 200px; left: 100px;}
+        section>article:nth-child(2) p span {color: #fffb02;}
+        .obj21 {bottom: -420px; left: -710px;}
+        .obj22 {bottom: -100px; right: -50px;}
+        /*3*/
+        section>article:nth-child(3) p {bottom: 300px; right: -100px;}
+        section>article:nth-child(3) p span {color: #b57de4;}
+        .obj31 {bottom:70px; right: 110px;}
+        .obj32 {bottom:-160px; left: 100px;}
+        /*4*/
+        section>article:nth-child(4) p {bottom:290px; left: 100px;}
+        section>article:nth-child(4) p span {color: #7cf923;}
+        .obj41 {bottom: -150px; left: 350px;}
+        .obj42 {top: -255px; right: 167px;}
+        .obj43 {bottom: -120px; right: -100px;}
+        /*5*/
+        section>article:nth-child(5) p {bottom: 100px; right: 150px;}
+        section>article:nth-child(5) p span {color: #3dbdfa;}
+        .obj51 {bottom: -290px; left: -100px;}
+        .obj52 {top: 170px; right: 30px;}
+        .obj53 {bottom: 0px; left: -30px;}
+    </style>
+    <script>
+        $(function(){
+            //화면 로딩시 스크롤을 제일 상단 
+            $('body , html').stop().animate({'scrollTop':0}, 1000);
+
+            $(window).on('scroll', function(){
+                let scroll = $(this).scrollTop();
+                // $('h1').text(scroll);  스크롤하면 로고가 사라짐.
+
+                for(let i=0; i<5; i++){
+                    $('section>article').eq(i).css({'transform':'translateZ(' + (-5000*i+scroll) + 'px)'});
+                }
+       
+        //스크롤한 거리에 따라 메뉴
+        for(let i=0; i<5; i++){
+            if(scroll>=i*5000-2500 && scroll<(i+1)*5000-2500){
+            $(".scrollNav li").removeClass().eq(i).addClass('on');
+            $('article').removeClass().eq(i).addClass('on');
+            }
+        }
+        /*  ▲ 숫자(순서)만 달라지고 문장이 같으므로 for문 속 if문 만듦. */
+        // if(scroll>=0 && scroll<5000){
+        //     $(".scrollNav li").removeClass().eq(0).addClass('on');
+        //     $('article').removeClass().eq(0).addClass('on');
+        // }
+        // if(scroll>=5000 && scroll<10000){
+        //     $(".scrollNav li").removeClass().eq(1).addClass('on');
+        // }
+        // if(scroll>=10000 && scroll<15000){
+        //     $(".scrollNav li").removeClass().eq(2).addClass('on');
+        // }
+        // if(scroll>=15000 && scroll<20000){
+        //     $(".scrollNav li").removeClass().eq(3).addClass('on');
+        // }
+        // if(scroll>=20000 && scroll<25000){
+        //     $(".scrollNav li").removeClass().eq(4).addClass('on');
+        // }
+
+    });   
+        //메뉴를 클릭했을 경우 스크롤 이동
+        $('.scrollNav>li').click(function(){
+            let i = $(this).index(); //내가클릭한게 몇번째인지
+            $('body, html').stop().animate({'scrollTop': 5000*i}, 1000);
+         });
+
+         $('body').on('mousemove',function(e){ //e: 이벤트객체로 마우스가 움직인x,y좌표 (내가움직인값을 파라미터로 받아야함)
+            let posX = e.pageX/100; //움직인 마우스의 x좌표 
+            //(나누는수가 커지면(/200,/300...) posX에 작은숫자가 들어가서 마우스를 움직일때 적게 움직임.)
+            //*내가 마우스로 움직이는 X값과 y값(가로세로의) 움직임을 조절할 수 있음
+            //나누기없으면 그냥 내가 마우스를 움직이는(x,y) 만큼 화면('body')이 움직임.
+            let posY = e.pageY/150;
+
+            $('.obj11').css({'left':-200-posX, 'bottom':-100-posY}); //-:반대방향(.obj11 {bottom: -100px; left: -270px;} <=원래위치css)
+            $('.obj12').css({'right':-593+posX, 'top':-85});  //+:같은방향(.obj12 {top: -85px; right: -593px;})
+            $('.obj13').css({'left':-100+posX, 'bottom':20+posY});
+
+            $('.obj21').css({'right':-710-posX, 'bottom':-420-posY});
+            $('.obj22').css({'left':-50+posX, 'bottom':-100+posY});
+
+            $('.obj41').css({'left':-350-posX , 'bottom':-150-posY});
+            $('.obj42').css({'right':-167+posX , 'top':-255-posY});
+            $('.obj43').css({'right':-100-posX , 'bottom':-120+posY});
+         });
+    
+    });
+    </script>
+</head>
+<body>
+    <div class="bg"></div>
+    <!-- 스크롤 거리 수치 확인 -->
+    <h1>0</h1>
+    <!-- 스크롤 거리 수치 확인 -->
+    <h1><img src="img1/logo_1.png" alt=""></h1>
+    <!-- 주메뉴 -->
+    <ul class="gnb clearFix">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Info</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <!-- 스크롤 메뉴 -->
+    <ul class="scrollNav">
+       <li class="on"><span></span><em>Player1</em></li>
+       <li><span></span><em>Player2</em></li>
+       <li><span></span><em>Player3</em></li>
+       <li><span></span><em>Player4</em></li>
+       <li><span></span><em>Player5</em></li>
+    </ul>
+
+    <section>
+        <article class="on">
+            <img src="img1/pic11.png" alt="" class="obj11">
+            <img src="img1/pic12.png" alt="" class="obj12">
+            <img src="img1/player1.png" alt="" class="obj13">
+            <p class="on">
+                <span>Lorem Ipsum</span>
+                <em>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</em>
+            </p>
+        </article>
+        <article>
+            <img src="img1/pic21.png" alt="" class="obj21">
+            <img src="img1/pic22.png" alt="" class="obj22">
+            <img src="img1/player2.png" alt="" class="obj23">
+            <p>
+                <span>Lorem Ipsum</span>
+                <em>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</em>
+            </p>
+        </article>
+        <article>
+            <img src="img1/pic31.png" alt="" class="obj31">
+            <img src="img1/pic32.png" alt="" class="obj32">
+            <img src="img1/player3.png" alt="" class="obj33">
+            <p>
+                <span>Lorem Ipsum</span>
+                <em>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</em>
+            </p>
+        </article>
+        <article>
+            <img src="img1/pic41.png" alt="" class="obj41">
+            <img src="img1/pic42.png" alt="" class="obj42">
+            <img src="img1/player4.png" alt="" class="obj43">
+            <p>
+                <span>Lorem Ipsum</span>
+                <em>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</em>
+            </p>
+        </article>
+        <article>
+            <img src="img1/pic51.png" alt="" class="obj51">
+            <img src="img1/pic52.png" alt="" class="obj52">
+            <img src="img1/player5.png" alt="" class="obj53">
+            <p>
+                <span>Lorem Ipsum</span>
+                <em>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</em>
+            </p>
+        </article>
+    </section>
+</body>
+</html>

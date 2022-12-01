@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #nav {
+            width: 70%;
+            background: #333;
+        }
+
+        #nav>li {
+            line-height: 40px;
+            border-bottom: 1px solid #444;
+        }
+
+        #nav>li>a {
+            display: block;
+            color: #fff;
+            text-indent: 20px;
+            background: url(image/arrow_down.png);
+            background-repeat: no-repeat;
+            background-position: 95% center;
+        }
+
+        #nav>li.active>a {
+            background-image: url(image/arrow_up.png);
+        }
+
+        .sub {
+            background: #999;
+            display: none;
+        }
+
+        .sub>li>a {
+            display: block;
+            text-indent: 60px;
+        }
+    </style>
+    <script>
+        //#nav>li>a클릭 => 서브메뉴가 slideDown
+        //li태그에 active클래스의 여부에 따라서 화살표 이미지가 바뀜.   
+        $(function(){
+        $("#nav>li>a").click(function () {
+            $(this).next('.sub').slideToggle(300);
+            $(this).parent().toggleClass('active') //$(this).parent()는<li> : activ클래스가 없으면 추가,있으면 제거
+                   .siblings().removeClass('active') //이벤트가 발생한 자신을 제외한 형제 active클래스 제거
+                   .children('.sub').slidUp(300);  //이벤트가 발생한 자신을 제외한 형제의 자식(.sub)은 slideUp
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <nav>
+        <ul id="nav">
+            <li>
+                <!-- <a href="#">main1</a>가 이벤트발생한 자신 $(this)이다. a는li와같은범위-->
+                <a href="#">main1</a>
+                <ul class="sub">
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">main2</a>
+                <ul class="sub">
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">main3</a>
+                <ul class="sub">
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">main4</a>
+                <ul class="sub">
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">main5</a>
+                <ul class="sub">
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                    <li><a href="#">submenu</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        nav{
+            background: rgba(0,0,0,0.8);
+        }
+        #nav{
+            width: 70%;
+            background: #222;
+        }
+        #nav>li{
+            line-height: 40px;
+            border-bottom: 1px solid #333;
+        }
+        #nav>li>a{
+            display: block;
+            color: white;
+            text-indent: 20px;
+            background-image: url(image/arrow_down.png);
+            background-repeat: no-repeat;
+            background-position: 95% center
+        }
+        #nav>li.active>a{
+            background-image: url(image/arrow_up.png);
+        }
+        .sub{
+            background: #999;
+            display: none;
+        }
+        .sub>li{
+            border-bottom: 1px solid #ddd;
+        }
+        .sub>li>a{
+            display: block;
+            text-indent: 60px;
+        }
+    </style>
+    <script>
+        $(function(){
+            /*#nav>li>a를 클릭하면 부모에는 active클래스를 적용하기,
+            형재인 sub는 display block 처리를 해준다.
+            */  
+           $("#nav>li>a").click(function(){
+            $(this).parent("li").addClass("active")  //#nav>li>a
+                   .siblings("li").removeClass("active")
+                   .children(".sub").css("display","none"); //sub메뉴 안보이게 숨기기
+            $(this).next().css("display","block");
+           });
+        });
+    </script>
+</head>
+<body>
+    <nav>
+        <ul id="nav">
+            <li>
+                <a href="#">메인1</a>
+                <ul class="sub">
+                    <li><a href="#">서브메뉴1</a></li>
+                    <li><a href="#">서브메뉴1</a></li>
+                    <li><a href="#">서브메뉴1</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">메인2</a>
+                <ul class="sub">
+                    <li><a href="#">서브메뉴2</a></li>
+                    <li><a href="#">서브메뉴2</a></li>
+                    <li><a href="#">서브메뉴2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">메인3</a>
+                <ul class="sub">
+                    <li><a href="#">서브메뉴3</a></li>
+                    <li><a href="#">서브메뉴3</a></li>
+                    <li><a href="#">서브메뉴3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">메인4</a>
+                <ul class="sub">
+                    <li><a href="#">서브메뉴4</a></li>
+                    <li><a href="#">서브메뉴4</a></li>
+                    <li><a href="#">서브메뉴4</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">메인5</a>
+                <ul class="sub">
+                    <li><a href="#">서브메뉴5</a></li>
+                    <li><a href="#">서브메뉴5</a></li>
+                    <li><a href="#">서브메뉴5</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>    
+</body>
+</html>

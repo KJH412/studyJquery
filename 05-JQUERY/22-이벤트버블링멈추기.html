@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            background: yellow;
+            padding: 150px;
+        }
+        #targetbox{
+            width: 200px;
+            height: 200px;
+            background: red;
+            color: #fff;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('#targetbox').click(function(e){  // 클릭이벤트 객체e를 받아서 처리
+                e.stopPropagation(); //버블링 막기
+                $(this).css('background','black');
+            });
+            $('#wrapper').click(function(){
+                $(this).css('background','blue');
+            });
+            //=> targetbox클릭시 부모인wrapper도 색이 같이 바뀜.(버블링)
+        });
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="targetbox"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            border: 2px solid blue;
+            margin: 0 auto;
+            margin-top: 200px;
+            background-color: blue;
+        }
+
+        #box.mouseover {          background-color: red;        }
+
+        #box.mouseout {           background-color: green;        }
+
+        #box.mousedown {          background-color: purple;        }
+
+        #box.mouseup {            background-color: white;        }
+
+        #box>p {
+            padding: 30px;
+            color: white;
+        }
+    </style>
+    <script>
+        $(function () {
+            //bind() : 선택 요소에 이벤트 연결
+
+            /*옛방법*/
+            // let box = $('#box'); //요소를 객체로 만들어서 사용
+            // box.bind('mouseover',function(){  //마우스를 올려놨을 때
+            //    let target = $(this); //이벤트가 발생한 요소
+            //    $(this).removeClass().addClass('mouseover');
+            //    target.find('p').text('mouseover');  //find() : 하위요소 중에 찾는 것
+            // });
+            // box.bind('mouseout',function(){  //마우스를 뗐을 때
+            //    let target = $(this); 
+            //    $(this).removeClass().addClass('mouseout');
+            //    target.find('p').text('mouseout');  
+            // });
+
+            let box = $('#box'); 
+            box.bind({
+                mouseover: function () { //마우스 커서를 올려놨을 때
+                    let target = $(this); //이벤트가 발생한 요소
+                    target.removeClass().addClass('mouseover');
+                    target.find('p').text('mouseover');
+                },
+                mouseout: function () { //마우스 커서를 밖으로 뗐을 때
+                    let target = $(this);
+                    target.removeClass().addClass('mouseout');
+                    target.find('p').text('mouseout');
+                },
+                mousedown : function(){ //마우스 꾹 누르고 있을 때
+                    let target = $(this);
+                    target.removeClass().addClass('mousedown');
+                    target.find('p').text('mousedown');   
+                },
+                mouseup : function(){  //마우스 클릭 후 뗐을때
+                    let target = $(this);
+                    target.removeClass().addClass('mouseup');
+                    target.find('p').text('mouseup');   
+                }
+            });
+
+            //unbind() : 이벤트를 제거
+            let btn1 = $('#btn1');
+            let btn2 = $('#btn2');
+
+            //마우스 커서가 벗어났을 때 이벤트 제거됨.
+            btn1.bind('click',function(){
+                box.unbind('mouseout');
+            });
+            //모든이벤트 제거
+            btn2.bind('click',function(){
+                box.unbind();
+            });
+            // btn1.bind('click',function(){.....});  => 동적으로 추가된 요소 적용이 안됨(차이)
+            // btn1.on('click',function(){.....}); => 동적으로 추가된 요소에도 적용(차이)
+            // = btn1.click(function(){......}); 
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="btn1" value="mouseout이벤트 제거">
+    <input type="button" id="btn2" value="모든 이벤트 제거">
+    <div id="box">
+        <p>eventType명으로 박스 텍스트를 설정해 주세요</p>
+    </div>
+</body>
+
+</html>

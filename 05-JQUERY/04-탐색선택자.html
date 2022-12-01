@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function () {
+            //menu의 하위요소 <li>태그 중 첫번째 배경 노란색으로 적용 
+            $("#menu li:first").css("background", "yellow");
+            //menu의 하위요소 <li>태그 중 마지막 요소만 배경 분홍색 적용
+            $("#menu li:last").css("background", "pink");
+            //even(홀수)/odd(짝수)
+            $("#menu li:even").css("color", "red");
+            $("#menu li:odd").css("color", "blue");
+            //first-of-type/last-of-type
+            $("#wrap li:first-of-type").css("background","orange");
+            $("#wrap li:last-of-type").css("background","green");
+            //nth-child(숫자n)/nth-last-of-type(숫자)
+            $("#wrap li:nth-child(3n)").css("color","skyblue");
+            $("#wrap li:nth-last-of-type(2)").css("background","yellowgreen");
+            //only-child(부모요소가 오직 한개만 존재할때)/slice(index)(선택한요소의 지정한 인덱스부터 참조)
+            $("#only li:only-child").css("background","hotpink");
+            $("#first_list li").slice(2).css("background","green");
+            //eq(index)/lt(index)/gt(index)
+            $("#first_list li:eq(3)").css("color","white"); //3번째 있는 li 
+            $("#first_list li:lt(3)").css("color","blue");   //인덱스(3)보다 작은 값 가진 것(0,1,2번쨰)
+            $("#first_list li:gt(3)").css("color","aqua");  //인덱스(3)보다 큰 값을 가진 것(4,5,6,7번째)
+        });
+    </script>
+</head>
+
+<body>
+    <h1>탐색선택자</h1>
+    <ul id="menu">
+        <li>내용1</li>
+        <li>내용2</li>
+        <li>내용3</li>
+        <li>내용4</li>
+    </ul>
+    <div id="wrap">
+        <ul>
+            <li>내용10</li>
+            <li>내용11</li>
+            <li>내용12</li>
+            <li>내용13</li>
+            <li>내용10</li>
+            <li>내용11</li>
+            <li>내용12</li>
+            <li>내용13</li>
+        </ul>
+        <ul>
+            <li>내용20</li>
+            <li>내용21</li>
+            <li>내용22</li>
+            <li>내용23</li>
+            <li>내용20</li>
+            <li>내용21</li>
+            <li>내용22</li>
+            <li>내용23</li>
+        </ul>
+    </div>
+    <div id="only">
+        <ul id="first_list">
+            <li>내용10</li>
+            <li>내용11</li>
+            <li>내용12</li>
+            <li>내용13</li>
+            <li>내용10</li>
+            <li>내용11</li>
+            <li>내용12</li>
+            <li>내용13</li>
+        </ul>
+        <ul>
+            <li>내용20</li>
+        </ul>
+    </div>
+</body>
+
+</html>

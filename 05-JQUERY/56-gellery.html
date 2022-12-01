@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #gallery{
+            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            width: 824px; _height: 595px;
+        }
+        #image{
+            width: 760px; margin: 0 auto;
+        }
+        #image p{
+            display: none;
+        }
+        #image p:first-child{
+            display: block;
+        }
+        #thumbnail{
+            position: relative;
+            width: 824px; margin-top: 30px;
+        }
+        #thumbnail div{
+            float: left;
+        }
+        #thumbnail .left{
+            position: absolute; left: 0; top: 0; width: 33px; height: 95px;
+            padding-top: 30px; text-align: center; cursor: pointer;
+        }
+        #thumbnail .right{
+            position: absolute; right: 0; top: 0; width: 33px; height: 95px;
+            padding-top: 30px; text-align: center; cursor: pointer;
+        }
+        #thumbnail .container{
+            overflow: hidden; position: relative; left: 33px;
+            width: 760px; height: 95px;
+        }
+        #thumbnail .container ul{
+            position: absolute; width: 2560px; margin-left: -8px;
+        }
+        #thumbnail .container .thumb{
+            float: left; width: 120px; 
+            margin-left: 8px;
+        }        
+    </style>
+    <script>
+        $(function(){
+            let current = 0; //현재상태가 0인것. (첫화면상태?)
+            let thumbListSize = 6;
+            let thumbnail = $('#thumbnail');
+            let prev = thumbnail.find('.left'); //('>.left')같은거임.
+            let next = thumbnail.find('.right');
+            let container = thumbnail.find('.container>ul'); //ul
+            let containerWidth = thumbnail.find('.container').width(); //화면에 보여지는 너비
+            let thumb = container.find('.thumb');  //li
+            let maxSize = thumb.length;  //18(li개수)
+            let image = $('#gallery #image>p'); //상세이미지
+
+            next.click(function(){
+
+                if(current < (maxSize/thumbListSize)-1){   // (18/6)-1보다 작을때(0,1일때), current 1씩증가시키기.(보여지는 썸네일 이미지가 6개, 다음버튼두번만 누르면 됨(총18개니까).)
+                current++; //1, 2, 3 (현재current가 0이라 증가시킴.)(썸네일0:6개,1:6개,2:6개,3:2개)
+                }
+                listMove(); //함수만듦.
+            });
+            
+            prev.click(function(){
+                if(current > 0){
+                current--;
+                }
+                listMove();
+            });
+
+            /*썸네일사진 클릭하면 같은i번째 image>p사진바뀜*/
+            thumb.click(function(){ 
+                let i = $(this).index(); //내가클릭한(this=thumb=li.thumb)의 i번째 
+                image.css('display','none').eq(i).css('display','block');
+            });
+            
+            function listMove(){
+                let tl = containerWidth * current * -1; //-1처리 한 이유? left가 '왼쪽'으로이동(-값)
+                container.stop().animate({left:tl},500); //container(.container>ul) left값 tl만큼 이동
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="gallery">
+        <div id="image">
+            <p><img src="slideimg/0.jpg" alt=""></p>
+            <p><img src="slideimg/1.jpg" alt=""></p>
+            <p><img src="slideimg/2.jpg" alt=""></p>
+            <p><img src="slideimg/3.jpg" alt=""></p>
+            <p><img src="slideimg/4.jpg" alt=""></p>
+            <p><img src="slideimg/5.jpg" alt=""></p>
+            <p><img src="slideimg/6.jpg" alt=""></p>
+            <p><img src="slideimg/7.jpg" alt=""></p>
+            <p><img src="slideimg/8.jpg" alt=""></p>
+            <p><img src="slideimg/9.jpg" alt=""></p>
+            <p><img src="slideimg/10.jpg" alt=""></p>
+            <p><img src="slideimg/11.jpg" alt=""></p>
+            <p><img src="slideimg/12.jpg" alt=""></p>
+            <p><img src="slideimg/13.jpg" alt=""></p>
+            <p><img src="slideimg/14.jpg" alt=""></p>
+            <p><img src="slideimg/15.jpg" alt=""></p>
+            <p><img src="slideimg/16.jpg" alt=""></p>
+            <p><img src="slideimg/17.jpg" alt=""></p>
+            <p><img src="slideimg/18.jpg" alt=""></p>
+            <p><img src="slideimg/19.jpg" alt=""></p>
+        </div>
+        <div id="thumbnail">
+            <div class="left">
+                <span><img src="slideimg/btn_left.gif" alt="이전"></span>
+            </div>
+            <div class="container">
+                <ul>
+                    <li class="thumb"><img src="slideimg/thumb0.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb1.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb2.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb3.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb4.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb5.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb6.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb7.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb8.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb9.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb10.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb11.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb12.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb13.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb14.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb15.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb16.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb17.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb18.jpg" alt=""></li>
+                    <li class="thumb"><img src="slideimg/thumb19.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="right">
+                <span><img src="slideimg/btn_right.gif" alt="다음"></span>
+            </div>
+        </div>        
+    </div>
+    
+</body>
+</html>
